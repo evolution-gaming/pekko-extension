@@ -4,7 +4,7 @@ import com.evolution.conhub.ConHubSpecHelper.*
 import com.evolution.pekko.conhub.ConStates.{Ctx, Diff}
 import com.evolution.conhub.transport.SendMsg
 import com.evolution.pekko.conhub.{ConStates, Conn, SendEvent, Serializer, UpdateResult, RemoteEvent as R}
-import com.evolution.test.ActorSpec
+import com.evolution.pekko.test.ActorSpec
 import com.evolutiongaming.concurrent.sequentially.{SequentialMap, Sequentially}
 import org.apache.pekko.actor.{ActorRef, Address}
 import org.apache.pekko.testkit.TestProbe

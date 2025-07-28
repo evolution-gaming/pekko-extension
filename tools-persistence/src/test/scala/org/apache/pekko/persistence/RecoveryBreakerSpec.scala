@@ -1,7 +1,7 @@
 package org.apache.pekko.persistence
 
 import com.evolution.serialization.BrokenSerializer
-import com.evolution.test.ActorSpec
+import com.evolution.pekko.test.ActorSpec
 import org.apache.pekko.actor.{ActorLogging, Props}
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec

@@ -1,6 +1,6 @@
 package org.apache.pekko.persistence
 
-import com.evolution.test.ActorSpec
+import com.evolution.pekko.test.ActorSpec
 import com.evolution.util
 import org.apache.pekko.actor.{ActorRef, Props}
 import org.apache.pekko.persistence.JournalProtocol.{DeleteMessagesTo, WriteMessages}

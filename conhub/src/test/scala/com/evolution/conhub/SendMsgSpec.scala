@@ -1,7 +1,7 @@
 package com.evolution.conhub
 
 import com.evolution.conhub.transport.{ReceiveMsg, SendMsg}
-import com.evolution.test.ActorSpec
+import com.evolution.pekko.test.ActorSpec
 import com.typesafe.config.{Config, ConfigFactory}
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec

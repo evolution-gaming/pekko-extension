@@ -1,4 +1,4 @@
-package com.evolution.test
+package com.evolution.pekko.test
 
 import com.typesafe.config.Config
 import org.apache.pekko.actor.ActorSystem

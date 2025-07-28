@@ -1,9 +1,9 @@
-package com.evolution.test
+package com.evolution.pekko.test
 
 import org.apache.pekko.testkit.{TestKitExtension, TestKitSettings}
 import org.scalatest
 
-import scala.concurrent.duration._
+import scala.concurrent.duration.*
 
 trait PatienceConfiguration extends scalatest.concurrent.PatienceConfiguration {
 

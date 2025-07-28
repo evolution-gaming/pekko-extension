@@ -1,6 +1,6 @@
 package com.evolution.pekko.serialization
 
-import com.evolution.test.ActorSpec
+import com.evolution.pekko.test.ActorSpec
 import org.apache.pekko.serialization.ByteArraySerializer
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
