@@ -2,7 +2,7 @@ package com.evolution.pekko.effect.eventsourcing
 
 import cats.data.NonEmptyList as Nel
 import cats.effect.*
-import cats.effect.implicits.* // TODO replace with `cats.effect.syntax.all.*` (https://github.com/typelevel/cats-effect/issues/4462)
+import cats.effect.implicits.*
 import cats.syntax.all.*
 import cats.{Applicative, FlatMap, Functor, Monad}
 import com.evolution.pekko.effect
