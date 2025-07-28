@@ -1,10 +1,9 @@
-package com.evolution.conhub
+package com.evolution.pekko.conhub
 
-import com.evolution.conhub.ConHubSpecHelper.*
-import com.evolution.pekko.conhub.ConStates.{Ctx, Diff}
-import com.evolution.conhub.transport.SendMsg
-import com.evolution.pekko.conhub.{ConStates, Conn, SendEvent, Serializer, UpdateResult, RemoteEvent as R}
+import com.evolution.pekko.conhub.ConHubSpecHelper.*
 import com.evolution.pekko.test.ActorSpec
+import com.evolution.pekko.conhub.ConStates.{Ctx, Diff}
+import com.evolution.pekko.conhub.transport.SendMsg
 import com.evolutiongaming.concurrent.sequentially.{SequentialMap, Sequentially}
 import org.apache.pekko.actor.{ActorRef, Address}
 import org.apache.pekko.testkit.TestProbe
@@ -26,7 +25,7 @@ class ConStatesSpec extends AnyWordSpec with ActorSpec with Matchers with ConHub
       expectDiff(None, Some(local))
 
       conStates.disconnect(id, version, reconnectTimeout, Ctx.Local)
-      expectPublish(R.Event.Disconnected(id, reconnectTimeout, version))
+      expectPublish(RemoteEvent.Event.Disconnected(id, reconnectTimeout, version))
       state shouldEqual Some(disconnected)
     }
 
@@ -52,11 +51,11 @@ class ConStatesSpec extends AnyWordSpec with ActorSpec with Matchers with ConHub
       expectDiff(None, Some(local))
 
       conStates.disconnect(id, version, reconnectTimeout)
-      expectPublish(R.Event.Disconnected(id, reconnectTimeout, version))
+      expectPublish(RemoteEvent.Event.Disconnected(id, reconnectTimeout, version))
       expectDiff(Some(local), Some(disconnected))
       state shouldEqual Some(disconnected)
 
-      expectPublish(R.Event.Removed(id, version))
+      expectPublish(RemoteEvent.Event.Removed(id, version))
       expectDiff(Some(disconnected), None)
       states.values.get(id) shouldEqual None
 
@@ -153,7 +152,7 @@ class ConStatesSpec extends AnyWordSpec with ActorSpec with Matchers with ConHub
       states.put(id, disconnected.copy(timestamp = past))
       conStates.checkConsistency(id)
 
-      expectPublish(R.Event.Removed(id, version))
+      expectPublish(RemoteEvent.Event.Removed(id, version))
       expectDiff(Some(disconnected.copy(timestamp = past)), None)
       states.values.get(id) shouldEqual None
     }
@@ -165,7 +164,7 @@ class ConStatesSpec extends AnyWordSpec with ActorSpec with Matchers with ConHub
       expectUpdated(local1.value)
 
       conStates.disconnect(id, version, reconnectTimeout)
-      expectPublish(R.Event.Disconnected(id, reconnectTimeout, version))
+      expectPublish(RemoteEvent.Event.Disconnected(id, reconnectTimeout, version))
 
       val local2 = local1.withSend(new Send)
       conStates.update(id, local2)
@@ -189,8 +188,8 @@ class ConStatesSpec extends AnyWordSpec with ActorSpec with Matchers with ConHub
     val states = SequentialMap[Id, Conn[Connection, Msg]](Sequentially.now)
 
     val connect = (_: ConStates[Id, Connection, Msg]) => {
-      val sendMsg = new SendMsg[R] {
-        def apply(msg: R, addresses: Iterable[Address]): Unit = pubSubProbe.ref.tell(msg, ActorRef.noSender)
+      val sendMsg = new SendMsg[RemoteEvent] {
+        def apply(msg: RemoteEvent, addresses: Iterable[Address]): Unit = pubSubProbe.ref.tell(msg, ActorRef.noSender)
       }
       SendEvent(sendMsg, Serializer.identity[Id], ConnectionSerializer)
     }
@@ -214,11 +213,11 @@ class ConStatesSpec extends AnyWordSpec with ActorSpec with Matchers with ConHub
 
     def reconnectTimeout = 1.minute
 
-    def expectPublish(event: R.Event) = pubSubProbe expectMsg R(event)
+    def expectPublish(event: RemoteEvent.Event) = pubSubProbe expectMsg RemoteEvent(event)
 
     def expectUpdated(connection: Connection) =
       pubSubProbe.expectMsgPF() {
-        case R(R.Event.Updated(value)) if value.id == id =>
+        case RemoteEvent(RemoteEvent.Event.Updated(value)) if value.id == id =>
           ConnectionSerializer.from(value.bytes) shouldEqual connection
       }
   }

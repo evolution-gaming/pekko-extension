@@ -4,7 +4,7 @@ import cats.effect.Sync
 import cats.syntax.all.*
 import com.evolution.pekko.effect.ActorEffect
 import com.evolution.pekko.effect.persistence.{EventSourcedId, SnapshotStore}
-import com.evolution.pekkoeffect.persistence.SeqNr
+import com.evolution.pekko.effect.persistence.SeqNr
 import com.evolutiongaming.catshelper.{FromFuture, LogOf}
 
 import java.time.Instant

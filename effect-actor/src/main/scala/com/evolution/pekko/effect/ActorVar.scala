@@ -9,7 +9,7 @@ import org.apache.pekko.actor.ActorContext
 
 import scala.util.control.NoStackTrace
 
-private[pekkoeffect] trait ActorVar[F[_], A] {
+private[effect] trait ActorVar[F[_], A] {
   import ActorVar.Directive
 
   def preStart(resource: Resource[F, A]): Unit
@@ -23,7 +23,7 @@ private[pekkoeffect] trait ActorVar[F[_], A] {
   def postStop(): F[Unit]
 }
 
-private[pekkoeffect] object ActorVar {
+private[effect] object ActorVar {
 
   type Release = Boolean
 

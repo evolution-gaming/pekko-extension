@@ -1,6 +1,6 @@
 package com.evolution.pekko.persistence
 
-import com.evolution.sharding.ShardEntry
+import com.evolution.pekko.sharding.ShardEntry
 
 object PersistenceId {
   def apply(persistenceType: String, id: String): String = s"$persistenceType-$id"

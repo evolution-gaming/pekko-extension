@@ -5,12 +5,12 @@ import cats.syntax.all.*
 import cats.{Applicative, Id, Monad, ~>}
 import com.codahale.metrics.MetricRegistry
 import com.evolution.pekko.serialization.ToBytesAble
-import com.evolutiongaming.catshelper.CatsHelper.*
 import com.evolutiongaming.catshelper.*
+import com.evolutiongaming.catshelper.CatsHelper.*
 import com.evolutiongaming.metrics.MetricName
 import org.apache.pekko.actor.{Actor, ActorPath, ActorRef, ActorRefFactory, ActorSystem, Props}
 import org.apache.pekko.cluster.Cluster
-import org.apache.pekko.cluster.pubsub.{DistributedPubSubMediatorSerializing, DistributedPubSubMediator as Mediator}
+import org.apache.pekko.cluster.pubsub.{DistributedPubSubMediator as Mediator, DistributedPubSubMediatorSerializing}
 import org.apache.pekko.pattern.*
 import org.apache.pekko.util.Timeout
 

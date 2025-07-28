@@ -1,7 +1,7 @@
 package org.apache.pekko.persistence
 
 import com.evolution.pekko.test.ActorSpec
-import com.evolution.util
+import com.evolution.pekko.util
 import org.apache.pekko.actor.{ActorRef, Props}
 import org.apache.pekko.persistence.JournalProtocol.{DeleteMessagesTo, WriteMessages}
 import org.apache.pekko.persistence.SnapshotProtocol.{DeleteSnapshot, DeleteSnapshots, SaveSnapshot}

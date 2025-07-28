@@ -3,6 +3,7 @@ package com.evolution.pekko.effect
 import cats.effect.unsafe.implicits.global
 import cats.effect.{Deferred, IO}
 import cats.syntax.all.*
+import com.evolution.pekko.effect.IOSuite.*
 import com.evolutiongaming.catshelper.CatsHelper.*
 import com.evolutiongaming.catshelper.FromFuture
 import org.scalatest.funsuite.AsyncFunSuite

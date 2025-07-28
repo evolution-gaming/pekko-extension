@@ -3,11 +3,11 @@ package com.evolution.pekko.effect.eventsourcing
 import cats.Monad
 import cats.arrow.FunctionK
 import cats.syntax.all.*
-import com.evolution.pekkoeffect.persistence.SeqNr
+import com.evolution.pekko.effect.persistence.SeqNr
 
 /**
  * @see
- *   [[com.evolution.pekkoeffect.persistence.Replay]]
+ *   [[com.evolution.pekko.effect.persistence.Replay]]
  * @tparam S
  *   state
  * @tparam E

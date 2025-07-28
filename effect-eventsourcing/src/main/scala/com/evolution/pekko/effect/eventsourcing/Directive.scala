@@ -3,7 +3,7 @@ package com.evolution.pekko.effect.eventsourcing
 import cats.kernel.Semigroup
 import cats.syntax.all.*
 import cats.{Applicative, FlatMap, Functor, Monad}
-import com.evolution.pekkoeffect.persistence.{Events, SeqNr}
+import com.evolution.pekko.effect.persistence.{Events, SeqNr}
 
 /**
  * Describes optional change as well as effect to be executed after change is applied and events are

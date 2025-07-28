@@ -1,12 +1,12 @@
 package com.evolution.pekko.effect.persistence
 
-import com.evolution.pekkoeffect.persistence.SeqNr
+import com.evolution.pekko.effect.persistence.SeqNr
 
 import java.time.Instant
 
 /**
  * Persistent snapshot-store API used in event-sourced actors
- * [[com.evolution.pekkoeffect.persistence.EventSourcedActorOf]]. The API consists of two parts:
+ * [[com.evolution.pekko.effect.persistence.EventSourcedActorOf]]. The API consists of two parts:
  * [[SnapshotStore.Read]] and [[SnapshotStore.Write]] that represents looking up and persisting
  * snapshots.
  */

@@ -57,7 +57,7 @@ object Snapshotter {
   def empty[F[_]: Applicative, A]: Snapshotter[F, A] =
     const(Instant.ofEpochMilli(0L).pure[F].pure[F], ().pure[F].pure[F])
 
-  private[pekkoeffect] def apply[F[_]: Sync: FromFuture, A](
+  private[effect] def apply[F[_]: Sync: FromFuture, A](
     snapshotter: org.apache.pekko.persistence.Snapshotter,
     timeout: FiniteDuration,
   ): Snapshotter[F, A] =

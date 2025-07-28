@@ -2,7 +2,7 @@ package com.evolution.pekko.effect.persistence
 
 import cats.data.NonEmptyList as Nel
 import cats.syntax.all.*
-import com.evolution.pekkoeffect.persistence.Events
+import com.evolution.pekko.effect.persistence.Events
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
 

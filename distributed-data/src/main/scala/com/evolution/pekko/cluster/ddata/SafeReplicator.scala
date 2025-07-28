@@ -3,7 +3,7 @@ package com.evolution.pekko.cluster.ddata
 import cats.Applicative
 import cats.effect.{Resource, Sync}
 import cats.syntax.all.*
-import com.evolution.cluster.ddata.ReplicatorError as E
+import com.evolution.pekko.cluster.ddata.ReplicatorError as E
 import com.evolutiongaming.catshelper.{FromFuture, MeasureDuration, ToFuture}
 import com.evolutiongaming.smetrics.*
 import com.evolutiongaming.smetrics.MetricsHelper.*

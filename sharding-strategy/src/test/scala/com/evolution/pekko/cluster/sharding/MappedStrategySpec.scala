@@ -1,8 +1,7 @@
 package com.evolution.pekko.cluster.sharding
 
-import cats.{Id, catsParallelForId}
 import cats.implicits.*
-import com.evolution.pekko.cluster.sharding
+import cats.{Id, catsParallelForId}
 import org.apache.pekko.actor.Address
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers

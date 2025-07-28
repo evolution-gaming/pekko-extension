@@ -7,10 +7,10 @@ import com.evolution.pekko.effect.ActorVar.Directive
 import com.evolution.pekko.effect.Fail.implicits.*
 import com.evolution.pekko.effect.Releasable.implicits.*
 import com.evolution.pekko.effect.{Envelope, Fail, Receive, Releasable}
-import com.evolution.pekkoeffect.persistence.SeqNr
+import com.evolution.pekko.effect.persistence.SeqNr
 import org.apache.pekko.actor.ActorRef
 
-private[pekkoeffect] trait Persistence[F[_], S, E, C] {
+private[effect] trait Persistence[F[_], S, E, C] {
 
   type Result = Releasable[F, Persistence[F, S, E, C]]
 
@@ -29,7 +29,7 @@ private[pekkoeffect] trait Persistence[F[_], S, E, C] {
   def timeout(seqNr: SeqNr): F[Directive[Result]]
 }
 
-private[pekkoeffect] object Persistence {
+private[effect] object Persistence {
 
   private sealed abstract class Started
 

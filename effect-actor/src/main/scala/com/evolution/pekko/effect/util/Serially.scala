@@ -12,11 +12,11 @@ import java.util.concurrent.atomic.AtomicReference
  * guarantee that the operations will be executed in the same order these arrived given these were
  * called from the same thread.
  */
-private[pekkoeffect] trait Serially[F[_], A] {
+private[effect] trait Serially[F[_], A] {
   def apply(f: A => F[A]): F[Unit]
 }
 
-private[pekkoeffect] object Serially {
+private[effect] object Serially {
 
   def apply[F[_]: Async, A](value: A): Serially[F, A] = {
 

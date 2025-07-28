@@ -5,10 +5,11 @@ import cats.effect.*
 import cats.effect.syntax.all.*
 import cats.effect.unsafe.implicits.global
 import cats.syntax.all.*
-import com.evolution.pekko.effect.IOSuite.*
 import com.evolution.pekko.effect.*
-import com.evolution.pekkoeffect.persistence.{Events, SeqNr}
-import com.evolution.pekkoeffect.testkit.Probe
+import com.evolution.pekko.effect.IOSuite.*
+import com.evolution.pekko.effect.persistence.{Events, SeqNr}
+import com.evolution.pekko.effect.persistence.InstrumentEventSourced.Action
+import com.evolution.pekko.effect.testkit.Probe
 import com.evolutiongaming.catshelper.CatsHelper.*
 import com.evolutiongaming.catshelper.{FromFuture, LogOf, ToFuture, ToTry}
 import org.apache.pekko.actor.{ActorIdentity, ActorRef, ActorSystem, Identify}
@@ -94,7 +95,7 @@ class EventSourcedActorOfTest extends AsyncFunSuite with ActorSuite with Matcher
     def eventSourcedOf(
       receiveTimeout: F[Unit],
     ): EventSourcedOf[F, Resource[F, RecoveryStarted[F, State, Event, Receive[F, Envelope[Any], Boolean]]]] =
-      EventSourcedOf[F] { actorCtx =>
+      EventSourcedOf.apply[F] { actorCtx =>
         val recoveryStarted =
           RecoveryStarted
             .const {
@@ -104,7 +105,7 @@ class EventSourcedActorOfTest extends AsyncFunSuite with ActorSuite with Matcher
                 } { recoveringCtx =>
                   for {
                     stateRef <- Ref[F].of(0).toResource
-                  } yield Receive[Envelope[Cmd]] { envelope =>
+                  } yield Receive.apply[Envelope[Cmd]] { envelope =>
                     val reply = Reply.fromActorRef[F](to = envelope.from, from = actorCtx.self)
 
                     envelope.msg match {
@@ -244,7 +245,7 @@ class EventSourcedActorOfTest extends AsyncFunSuite with ActorSuite with Matcher
     ) =
       EventSourcedOf.const {
         val recoveryStarted = {
-          val started = RecoveryStarted[S] { (_, _) =>
+          val started = RecoveryStarted.apply[S] { (_, _) =>
             Recovering
               .const[S] {
                 Replay.empty[F, E].pure[Resource[F, *]]
@@ -786,7 +787,7 @@ class EventSourcedActorOfTest extends AsyncFunSuite with ActorSuite with Matcher
       delay: F[Unit],
       stopped: Deferred[F, Unit],
     ) =
-      EventSourcedOf[F] { actorCtx =>
+      EventSourcedOf.apply[F] { actorCtx =>
         val recoveryStarted =
           Resource
             .make(delay productR actorCtx.stop)(_ => stopped.complete(()).void)
@@ -855,7 +856,7 @@ class EventSourcedActorOfTest extends AsyncFunSuite with ActorSuite with Matcher
       lock: Deferred[F, Unit],
       stopped: Deferred[F, Unit],
     ) =
-      EventSourcedOf[F] { actorCtx =>
+      EventSourcedOf.apply[F] { actorCtx =>
         val recoveryStarted =
           RecoveryStarted
             .const {
@@ -921,7 +922,7 @@ class EventSourcedActorOfTest extends AsyncFunSuite with ActorSuite with Matcher
       lock: Deferred[F, Unit],
       stopped: Deferred[F, Unit],
     ) =
-      EventSourcedOf[F] { actorCtx =>
+      EventSourcedOf.apply[F] { actorCtx =>
         val recoveryStarted =
           RecoveryStarted
             .const {
@@ -1092,7 +1093,7 @@ class EventSourcedActorOfTest extends AsyncFunSuite with ActorSuite with Matcher
     type E = SeqNr
 
     def eventSourcedOf(timedOut: Deferred[F, Unit]) =
-      EventSourcedOf[F] { actorCtx =>
+      EventSourcedOf.apply[F] { actorCtx =>
         for {
           _ <- actorCtx.setReceiveTimeout(10.millis)
         } yield {
@@ -1109,7 +1110,7 @@ class EventSourcedActorOfTest extends AsyncFunSuite with ActorSuite with Matcher
               } {
                 for {
                   _ <- actorCtx.setReceiveTimeout(10.millis).toResource
-                } yield Receive[Envelope[C]] { _ =>
+                } yield Receive.apply[Envelope[C]] { _ =>
                   false.pure[F]
                 } {
                   timedOut.complete(()).as(true)

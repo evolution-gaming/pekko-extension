@@ -2,8 +2,9 @@ package com.evolution.pekko.cluster.pubsub
 
 import cats.Parallel
 import cats.effect.*
-import cats.implicits.*
+import cats.syntax.all.*
 import com.evolution.pekko.cluster.pubsub.IOSuite.*
+import com.evolution.pekko.cluster.pubsub.PubSub.OnMsg
 import org.apache.pekko.actor.{ActorPath, ActorSystem}
 import org.apache.pekko.testkit.TestActors
 import org.scalatest.funsuite.AsyncFunSuite

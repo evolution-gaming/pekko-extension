@@ -64,7 +64,8 @@ object ConHubSerializer {
 
   private val codecRemoved = (codecs.utf8_32 :: codecVersion).as[RemoteEvent.Event.Removed]
 
-  private val codecDisconnected = (codecs.utf8_32 :: codecFiniteDuration :: codecVersion).as[RemoteEvent.Event.Disconnected]
+  private val codecDisconnected =
+    (codecs.utf8_32 :: codecFiniteDuration :: codecVersion).as[RemoteEvent.Event.Disconnected]
 
   private val codecSync = codecsNel(codecValue).as[RemoteEvent.Event.Sync]
 
@@ -81,7 +82,7 @@ object ConHubSerializer {
         case 1 => codecRemoved.decode(bits)
         case 2 => codecDisconnected.decode(bits)
         case 3 => codecSync.decode(bits)
-        case 4 => Attempt.successful(DecodeResult(R.Event.ConHubJoined, bits))
+        case 4 => Attempt.successful(DecodeResult(RemoteEvent.Event.ConHubJoined, bits))
         case x => notSerializable(s"Cannot deserialize event for id $x in ${ getClass.getName }")
       }
     } yield RemoteEvent(result.value)
@@ -103,7 +104,7 @@ object ConHubSerializer {
       case a: RemoteEvent.Event.Removed => withMark(1, codecRemoved.encode(a))
       case a: RemoteEvent.Event.Disconnected => withMark(2, codecDisconnected.encode(a))
       case a: RemoteEvent.Event.Sync => withMark(3, codecSync.encode(a))
-      case R.Event.ConHubJoined => withMark(4, Attempt.successful(BitVector.empty))
+      case RemoteEvent.Event.ConHubJoined => withMark(4, Attempt.successful(BitVector.empty))
     }
   }
 

@@ -3,9 +3,9 @@ package com.evolution.pekko.effect.persistence
 import cats.effect.{Async, Deferred, Resource, Sync}
 import cats.implicits.*
 import cats.{Applicative, FlatMap, Monad, ~>}
+import com.evolution.pekko.effect.Act
 import com.evolution.pekko.effect.Fail
 import com.evolution.pekko.effect.util.AtomicRef
-import com.evolution.pekko.effect.Act
 import com.evolutiongaming.catshelper.CatsHelper.*
 import com.evolutiongaming.catshelper.{Log, MeasureDuration, MonadThrowable, ToFuture}
 import org.apache.pekko.persistence.*
@@ -38,14 +38,14 @@ object Append {
 
   def empty[F[_]: Applicative, A]: Append[F, A] = const(SeqNr.Min.pure[F].pure[F])
 
-  private[pekkoeffect] def adapter[F[_]: Async: ToFuture, A](
+  private[effect] def adapter[F[_]: Async: ToFuture, A](
     act: Act[F],
     actor: PersistentActor,
     stopped: F[Throwable],
   ): Resource[F, Adapter[F, A]] =
     adapter(act, Eventsourced(actor), stopped)
 
-  private[pekkoeffect] def adapter[F[_]: Async: ToFuture, A](
+  private[effect] def adapter[F[_]: Async: ToFuture, A](
     act: Act[F],
     eventsourced: Eventsourced,
     stopped: F[Throwable],
@@ -160,14 +160,14 @@ object Append {
     }
   }
 
-  private[pekkoeffect] trait Eventsourced {
+  private[effect] trait Eventsourced {
 
     def lastSequenceNr: SeqNr
 
     def persistAllAsync[A](events: List[A])(handler: A => Unit): Unit
   }
 
-  private[pekkoeffect] object Eventsourced {
+  private[effect] object Eventsourced {
 
     def apply(actor: PersistentActor): Eventsourced = new Eventsourced {
 
@@ -177,12 +177,12 @@ object Append {
     }
   }
 
-  private[pekkoeffect] trait OnError[A] {
+  private[effect] trait OnError[A] {
 
     def apply(cause: Throwable, event: A, seqNr: SeqNr): Unit
   }
 
-  private[pekkoeffect] trait Adapter[F[_], A] {
+  private[effect] trait Adapter[F[_], A] {
 
     def value: Append[F, A]
 

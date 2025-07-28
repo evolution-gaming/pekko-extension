@@ -4,8 +4,8 @@ import cats.effect.IO
 import cats.effect.unsafe.implicits.global
 import cats.syntax.all.*
 import com.evolution.pekko.effect.persistence.{EventSourcedId, SnapshotStore}
-import com.evolution.pekkoeffect.persistence.SeqNr
-import com.evolution.pekkoeffect.testkit.TestActorSystem
+import com.evolution.pekko.effect.persistence.SeqNr
+import com.evolution.pekko.effect.testkit.TestActorSystem
 import com.evolutiongaming.catshelper.LogOf
 import org.apache.pekko.pattern.AskTimeoutException
 import org.scalatest.funsuite.AnyFunSuite

@@ -40,7 +40,7 @@ object Extract {
    * Example:
    * {{{
    * scala> import cats.effect.IO
-   * scala> import com.evolution.pekkoeffect.Extract
+   * scala> import com.evolution.pekko.effect.Extract
    *
    * scala> case class Request(id: Long) class Request
    *

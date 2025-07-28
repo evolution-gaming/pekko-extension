@@ -6,8 +6,9 @@ import cats.effect.implicits.*
 import cats.syntax.all.*
 import cats.{Applicative, FlatMap, Functor, Monad}
 import com.evolution.pekko.effect.util.CloseOnError
-import com.evolution.pekkoeffect
-import com.evolution.pekkoeffect.persistence.{Events, SeqNr}
+import com.evolution.pekko.effect
+import com.evolution.pekko.effect.eventsourcing.util.ResourceFromQueue
+import com.evolution.pekko.effect.persistence.{Events, SeqNr}
 import com.evolutiongaming.catshelper.CatsHelper.*
 import com.evolutiongaming.catshelper.{FromFuture, Runtime, SerParQueue, ToFuture}
 import org.apache.pekko.actor.ActorSystem
@@ -19,7 +20,7 @@ trait Engine[F[_], S, E] {
 
   /**
    * Get effective state. Effective state is latest persisted state, should be used for all async
-   * operations with [[Journaller]] or [[Snapshotter]]
+   * operations with [[Journaller]] or [[com.evolution.pekko.effect.persistence.Snapshotter]]
    */
   def effective: F[State[S]]
 
@@ -83,7 +84,7 @@ object Engine {
   def of[F[_]: Async: ToFuture: FromFuture, S, E](
     initial: State[S],
     actorSystem: ActorSystem,
-    append: pekkoeffect.persistence.Append[F, E],
+    append: effect.persistence.Append[F, E],
   ): Resource[F, Engine[F, S, E]] =
     for {
       materializer <- Sync[F].delay(SystemMaterializer(actorSystem).materializer).toResource
@@ -474,7 +475,7 @@ object Engine {
     def empty[F[_]: Applicative, A]: Append[F, A] = const(SeqNr.Min.pure[F])
 
     def apply[F[_]: FlatMap, A](
-      append: pekkoeffect.persistence.Append[F, A],
+      append: effect.persistence.Append[F, A],
     ): Append[F, A] = { events =>
       append(events).flatten
     }

@@ -3,7 +3,7 @@ package com.evolution.pekko.effect.eventsourcing
 import cats.kernel.Semigroup
 import cats.syntax.all.*
 import cats.{Applicative, FlatMap, Functor, Monad}
-import com.evolution.pekkoeffect.persistence.SeqNr
+import com.evolution.pekko.effect.persistence.SeqNr
 import com.evolutiongaming.catshelper.MonadThrowable
 
 /**

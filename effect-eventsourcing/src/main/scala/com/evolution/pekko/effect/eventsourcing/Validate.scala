@@ -2,7 +2,7 @@ package com.evolution.pekko.effect.eventsourcing
 
 import cats.syntax.all.*
 import cats.{Applicative, FlatMap, Functor, Monad}
-import com.evolution.pekkoeffect.persistence.SeqNr
+import com.evolution.pekko.effect.persistence.SeqNr
 
 /**
  * Describes "Validation" phase against actual state

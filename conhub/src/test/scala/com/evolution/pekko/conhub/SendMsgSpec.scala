@@ -1,6 +1,6 @@
-package com.evolution.conhub
+package com.evolution.pekko.conhub
 
-import com.evolution.conhub.transport.{ReceiveMsg, SendMsg}
+import com.evolution.pekko.conhub.transport.{ReceiveMsg, SendMsg}
 import com.evolution.pekko.test.ActorSpec
 import com.typesafe.config.{Config, ConfigFactory}
 import org.scalatest.matchers.should.Matchers

@@ -1,6 +1,6 @@
 package com.evolution.pekko.cluster.pubsub
 
-import com.evolution.serialization.SerializedMsg
+import com.evolution.pekko.serialization.SerializedMsg
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
 import scodec.bits.ByteVector

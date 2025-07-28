@@ -1,6 +1,8 @@
 package com.evolution.pekko.conhub
 
 import cats.data.NonEmptyList as Nel
+import com.evolution.pekko.conhub.RemoteEvent as R
+import com.evolution.pekko.conhub.transport.{ReceiveMsg, SendMsg}
 import org.apache.pekko.actor.{ActorRefFactory, ActorSystem, Address}
 
 import scala.concurrent.duration.FiniteDuration
@@ -20,9 +22,9 @@ trait SendEvent[Id, T] {
 object SendEvent {
 
   def apply[Id, A](
-                    send: RemoteEvent.Event => Unit,
-                    idSerializer: Serializer.Str[Id],
-                    conSerializer: Serializer.Bin[A],
+    send: RemoteEvent.Event => Unit,
+    idSerializer: Serializer.Str[Id],
+    conSerializer: Serializer.Bin[A],
   ): SendEvent[Id, A] =
 
     new SendEvent[Id, A] {

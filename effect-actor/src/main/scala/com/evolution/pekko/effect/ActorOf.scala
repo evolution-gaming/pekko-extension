@@ -2,6 +2,9 @@ package com.evolution.pekko.effect
 
 import cats.effect.*
 import cats.syntax.all.*
+import cats.effect.syntax.all.*
+import com.evolution.pekko.effect.ActorVar.Directive
+import com.evolution.pekko.effect.Fail.implicits.*
 import com.evolutiongaming.catshelper.CatsHelper.*
 import com.evolutiongaming.catshelper.ToFuture
 import org.apache.pekko.actor.{Actor, ActorRef, ReceiveTimeout}

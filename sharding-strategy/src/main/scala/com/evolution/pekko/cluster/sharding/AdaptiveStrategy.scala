@@ -4,6 +4,8 @@ import cats.effect.syntax.resource.*
 import cats.effect.{Ref, Resource, Sync}
 import cats.implicits.*
 import cats.{Applicative, FlatMap, Monad, Parallel, ~>}
+import com.evolution.pekko.cluster.ddata.SafeReplicator
+import com.evolution.pekko.cluster.sharding.AdaptiveStrategy.Counters
 import com.evolutiongaming.catshelper.*
 import org.apache.pekko.actor.*
 import org.apache.pekko.cluster.ddata.*

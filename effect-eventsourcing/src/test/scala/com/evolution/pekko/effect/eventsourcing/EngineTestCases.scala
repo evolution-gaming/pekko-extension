@@ -6,7 +6,7 @@ import cats.effect.kernel.Ref
 import cats.effect.unsafe.implicits.global
 import cats.syntax.all.*
 import com.evolution.pekko.effect.IOSuite.*
-import com.evolution.pekkoeffect.persistence.{Events, SeqNr}
+import com.evolution.pekko.effect.persistence.{Events, SeqNr}
 import com.evolutiongaming.catshelper.{FromFuture, ToFuture}
 import com.evolutiongaming.retry.{Retry, Strategy}
 import org.scalatest.funsuite.AsyncFunSuite

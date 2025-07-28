@@ -3,10 +3,10 @@ package com.evolution.pekko.effect.cluster.sharding
 import cats.effect.implicits.*
 import cats.effect.{Async, Resource, Sync}
 import cats.syntax.all.*
-import com.evolution.pekko.effect.{ActorRefOf, Ask}
 import com.evolution.pekko.effect.util.Terminated
-import com.evolution.pekkoeffect.cluster.{DataCenter, Role}
-import com.evolution.pekkoeffect.persistence.TypeName
+import com.evolution.pekko.effect.{ActorRefOf, Ask}
+import com.evolution.pekko.effect.cluster.{DataCenter, Role}
+import com.evolution.pekko.effect.persistence.TypeName
 import com.evolutiongaming.catshelper.*
 import com.evolutiongaming.catshelper.CatsHelper.*
 import org.apache.pekko.actor.{ActorRef, ActorSystem, Props}

@@ -1,11 +1,11 @@
 package com.evolution.pekko.effect.persistence
 
-import com.evolution.pekkoeffect.persistence.SeqNr
+import com.evolution.pekko.effect.persistence.SeqNr
 import com.evolutiongaming.sstream
 
 /**
  * Persistent event-store API used in event-sourced actors
- * [[com.evolution.pekkoeffect.persistence.EventSourcedActorOf]]. The API consists of two parts:
+ * [[com.evolution.pekko.effect.persistence.EventSourcedActorOf]]. The API consists of two parts:
  * [[EventStore.Read]] and [[EventStore.Write]] that represents reading (actually streaming) and
  * persisting events.
  */

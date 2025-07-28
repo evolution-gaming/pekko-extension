@@ -1,10 +1,10 @@
 package com.evolution.pekko.cluster.sharding
 
-import cats.effect.kernel.Ref
 import cats.effect.syntax.resource.*
-import cats.effect.{Resource, Sync}
+import cats.effect.{Ref, Resource, Sync}
 import cats.implicits.*
 import cats.{FlatMap, Parallel, ~>}
+import com.evolution.pekko.cluster.ddata.SafeReplicator
 import com.evolutiongaming.catshelper.{FromFuture, ToFuture}
 import org.apache.pekko.actor.{ActorRef, ActorRefFactory, ActorSystem, Address, ExtendedActorSystem, Extension, ExtensionId}
 import org.apache.pekko.cluster.ddata.*

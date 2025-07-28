@@ -208,7 +208,7 @@ Covered ("classic", not the "typed" kind of actors!):
 * [Actors](https://pekko.apache.org/docs/pekko/current/actors.html)
 * [Persistence](https://pekko.apache.org/docs/pekko/current/persistence.html)
 
-##### [Tell.scala](pekko-extension-effect-actor/src/main/scala/com/evolution/pekkoeffect/Tell.scala)
+##### [Tell.scala](effect-actor/src/main/scala/com/evolution/pekko/effect/Tell.scala)
 
 Represents `ActorRef.tell`:
 ```scala
@@ -217,7 +217,7 @@ trait Tell[F[_], -A] {
 }
 ```
 
-##### [Ask.scala](pekko-extension-effect-actor/src/main/scala/com/evolution/pekkoeffect/Ask.scala)
+##### [Ask.scala](effect-actor/src/main/scala/com/evolution/pekko/effect/Ask.scala)
 
 Represents `ActorRef.ask` pattern:
 ```scala
@@ -226,7 +226,7 @@ trait Ask[F[_], -A, B] {
 }
 ```
 
-##### [Reply.scala](pekko-extension-effect-actor/src/main/scala/com/evolution/pekkoeffect/Reply.scala)
+##### [Reply.scala](effect-actor/src/main/scala/com/evolution/pekko/effect/Reply.scala)
 
 Represents a reply pattern: `sender() ! reply`:
 ```scala
@@ -235,7 +235,7 @@ trait Reply[F[_], -A] {
 }
 ```
 
-##### [Receive.scala](pekko-extension-effect-actor/src/main/scala/com/evolution/pekkoeffect/Receive.scala)
+##### [Receive.scala](effect-actor/src/main/scala/com/evolution/pekko/effect/Receive.scala)
 
 This is what you need to implement instead of familiar `new Actor { ... }`:
 ```scala
@@ -245,11 +245,11 @@ trait Receive[F[_], -A, B] {
 }
 ```
 
-##### [ActorOf.scala](pekko-extension-effect-actor/src/main/scala/com/evolution/pekkoeffect/ActorOf.scala)
+##### [ActorOf.scala](effect-actor/src/main/scala/com/evolution/pekko/effect/ActorOf.scala)
 
 Constructs `Actor.scala` out of `receive: ActorCtx[F] => Resource[F, Receive[F, Any]]`.
 
-##### [ActorCtx.scala](pekko-extension-effect-actor/src/main/scala/com/evolution/pekkoeffect/ActorCtx.scala)
+##### [ActorCtx.scala](effect-actor/src/main/scala/com/evolution/pekko/effect/ActorCtx.scala)
 
 Wraps `ActorContext`:
 ```scala
@@ -269,12 +269,12 @@ trait ActorCtx[F[_]] {
 
 #### pekko-extension-effect-persistence
 
-##### [PersistentActorOf.scala](pekko-extension-effect-persistence/src/main/scala/com/evolution/pekkoeffect/persistence/PersistentActorOf.scala)
+##### [PersistentActorOf.scala](effect-persistence/src/main/scala/com/evolution/pekko/effect/persistence/PersistentActorOf.scala)
 
 Constructs `PersistentActor.scala` out of `eventSourcedOf: ActorCtx[F] => F[EventSourced[F, S, E, C]]`
 
 
-##### [EventSourced.scala](pekko-extension-effect-persistence/src/main/scala/com/evolution/pekkoeffect/persistence/EventSourced.scala)
+##### [EventSourced.scala](effect-persistence/src/main/scala/com/evolution/pekko/effect/persistence/EventSourced.scala)
 
 Describes a lifecycle of entity with regard to event sourcing, phases are: Started, Recovering, Receiving and Termination
 
@@ -287,7 +287,7 @@ trait EventSourced[F[_], S, E, C] {
 }
 ```
 
-##### [RecoveryStarted.scala](pekko-extension-effect-persistence/src/main/scala/com/evolution/pekkoeffect/persistence/RecoveryStarted.scala)
+##### [RecoveryStarted.scala](effect-persistence/src/main/scala/com/evolution/pekko/effect/persistence/RecoveryStarted.scala)
 
 Describes the start of the recovery phase
 
@@ -301,7 +301,7 @@ trait RecoveryStarted[F[_], S, E, C] {
 ```
 
 
-##### [Recovering.scala](pekko-extension-effect-persistence/src/main/scala/com/evolution/pekkoeffect/persistence/Recovering.scala)
+##### [Recovering.scala](effect-persistence/src/main/scala/com/evolution/pekko/effect/persistence/Recovering.scala)
 
 Describes recovery phase
 
@@ -318,7 +318,7 @@ trait Recovering[F[_], S, E, C] {
 ```
 
 
-##### [Replay.scala](pekko-extension-effect-persistence/src/main/scala/com/evolution/pekkoeffect/persistence/Replay.scala)
+##### [Replay.scala](effect-persistence/src/main/scala/com/evolution/pekko/effect/persistence/Replay.scala)
 
 Used during recovery to replay events
 
@@ -329,7 +329,7 @@ trait Replay[F[_], A] {
 ```
 
 
-##### [Journaller.scala](pekko-extension-effect-persistence/src/main/scala/com/evolution/pekkoeffect/persistence/Journaller.scala)
+##### [Journaller.scala](effect-persistence/src/main/scala/com/evolution/pekko/effect/persistence/Journaller.scala)
 
 Describes communication with underlying journal
 
@@ -341,7 +341,7 @@ trait Journaller[F[_], -A] {
 ```
 
 
-##### [Snapshotter.scala](pekko-extension-effect-persistence/src/main/scala/com/evolution/pekkoeffect/persistence/Snapshotter.scala)
+##### [Snapshotter.scala](effect-persistence/src/main/scala/com/evolution/pekko/effect/persistence/Snapshotter.scala)
 
 Describes communication with underlying snapshot storage
 
@@ -384,7 +384,7 @@ TODO add description!
 
 #### pekko-extension-effect-eventsourcing
 
-[Engine.scala](pekko-extension-effect-eventsourcing/src/main/scala/com/evolution/pekkoeffect/eventsourcing/Engine.scala)
+[Engine.scala](effect-eventsourcing/src/main/scala/com/evolution/pekko/effect/eventsourcing/Engine.scala)
 
 This is the main runtime/queue where all actions against your state are processed in a desired event-sourcing sequence:
 1. validate and finalize events

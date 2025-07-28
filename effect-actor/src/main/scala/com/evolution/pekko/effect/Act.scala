@@ -9,14 +9,14 @@ import org.apache.pekko.actor.{Actor, ActorRef}
 /**
  * Act executes function in `receive` thread of an actor
  */
-private[pekkoeffect] trait Act[F[_]] {
+private[effect] trait Act[F[_]] {
 
   def apply[A](f: => A): F[A]
 
   def postStop(): Unit
 }
 
-private[pekkoeffect] object Act {
+private[effect] object Act {
 
   def empty[F[_]: Sync]: Act[F] = {
     class Empty
@@ -53,7 +53,7 @@ private[pekkoeffect] object Act {
 
   object Adapter {
 
-    private[pekkoeffect] def stoppedError = ActorStoppedError("actor already stopped, no more operations are possible")
+    private[effect] def stoppedError = ActorStoppedError("actor already stopped, no more operations are possible")
 
     private val threadLocal: ThreadLocal[Option[AdapterLike]] = new ThreadLocal[Option[AdapterLike]] {
       override def initialValue() = none[AdapterLike]

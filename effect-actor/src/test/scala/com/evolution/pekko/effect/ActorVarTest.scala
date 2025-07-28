@@ -1,13 +1,13 @@
 package com.evolution.pekko.effect
 
+import com.evolution.pekko.effect.IOSuite.*
 import cats.effect.*
 import cats.effect.implicits.*
 import cats.effect.kernel.Deferred
 import cats.effect.unsafe.implicits.global
 import cats.syntax.all.*
-import com.evolution.pekko.effect.{ActorVar, Releasable}
 import com.evolution.pekko.effect.ActorVar.Directive
-import IOSuite.*
+import com.evolution.pekko.effect.{ActorVar, Releasable}
 import com.evolutiongaming.catshelper.CatsHelper.*
 import com.evolutiongaming.catshelper.{ToFuture, ToTry}
 import org.scalatest.funsuite.AsyncFunSuite

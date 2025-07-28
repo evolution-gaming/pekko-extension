@@ -2,7 +2,7 @@ package org.apache.pekko.cluster.pubsub
 
 import cats.Id
 import com.evolution.pekko.cluster.pubsub.{PubSub, PubSubMsg}
-import com.evolution.serialization.{SerializedMsg, SerializedMsgExt}
+import com.evolution.pekko.serialization.{SerializedMsg, SerializedMsgExt}
 import org.apache.pekko.Done
 import org.apache.pekko.actor.{
   Actor,

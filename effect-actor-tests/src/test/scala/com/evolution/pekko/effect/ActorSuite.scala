@@ -3,7 +3,7 @@ package com.evolution.pekko.effect
 import cats.effect.IO
 import cats.effect.unsafe.implicits.global
 import cats.syntax.all.*
-import com.evolution.pekkoeffect.testkit.TestActorSystem
+import com.evolution.pekko.effect.testkit.TestActorSystem
 import com.evolutiongaming.catshelper.CatsHelper.*
 import com.typesafe.config.Config
 import org.apache.pekko.actor.ActorSystem

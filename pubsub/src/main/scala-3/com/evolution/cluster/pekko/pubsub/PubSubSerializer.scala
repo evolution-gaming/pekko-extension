@@ -1,6 +1,6 @@
 package com.evolution.pekko.cluster.pubsub
 
-import com.evolution.serialization.SerializedMsg
+import com.evolution.pekko.serialization.SerializedMsg
 import org.apache.pekko.serialization.SerializerWithStringManifest
 import scodec.*
 import scodec.Codec.*

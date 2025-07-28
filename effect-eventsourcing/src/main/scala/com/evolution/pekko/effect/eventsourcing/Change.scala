@@ -2,7 +2,7 @@ package com.evolution.pekko.effect.eventsourcing
 
 import cats.syntax.all.*
 import cats.{Functor, Monad, Semigroup}
-import com.evolution.pekkoeffect.persistence.Events
+import com.evolution.pekko.effect.persistence.Events
 
 /**
  * Used to provide new state to be captured and events to be stored

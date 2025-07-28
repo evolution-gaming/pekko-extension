@@ -4,7 +4,7 @@ import cats.effect.{Resource, Sync}
 import cats.syntax.all.*
 import cats.{Applicative, FlatMap, ~>}
 import com.evolution.pekko.effect.Fail
-import com.evolution.pekkoeffect.persistence.SeqNr
+import com.evolution.pekko.effect.persistence.SeqNr
 import com.evolutiongaming.catshelper.{FromFuture, Log, MeasureDuration, MonadThrowable}
 import org.apache.pekko.persistence.DeleteEventsToInterop
 
@@ -34,7 +34,7 @@ object DeleteEventsTo {
     }
   }
 
-  private[pekkoeffect] def of[F[_]: Sync: FromFuture, A](
+  private[effect] def of[F[_]: Sync: FromFuture, A](
     persistentActor: org.apache.pekko.persistence.PersistentActor,
     timeout: FiniteDuration,
   ): Resource[F, DeleteEventsTo[F]] =

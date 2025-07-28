@@ -1,7 +1,7 @@
-package com.evolution.conhub
+package com.evolution.pekko.conhub
 
 import cats.data.NonEmptyList as Nel
-import com.evolution.pekko.conhub.{ConHubSerializer, RemoteMsgs, Version, RemoteEvent as R}
+import com.evolution.pekko.conhub.RemoteEvent as R
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
 import scodec.bits.ByteVector
