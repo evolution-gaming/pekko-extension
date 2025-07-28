@@ -1,7 +1,7 @@
 package com.evolution.pekko.persistence
 
-import org.scalatest.OptionValues._
-import org.scalatest.matchers.should.Matchers._
+import org.scalatest.OptionValues.*
+import org.scalatest.matchers.should.Matchers.*
 import org.scalatest.wordspec.AnyWordSpec
 
 class PersistenceIdSpec extends AnyWordSpec {

@@ -1,8 +1,8 @@
 package org.apache.pekko.persistence
 
 import org.apache.pekko.actor.ActorRef
-import org.apache.pekko.persistence.JournalProtocol._
-import org.apache.pekko.persistence.SnapshotProtocol._
+import org.apache.pekko.persistence.JournalProtocol.*
+import org.apache.pekko.persistence.SnapshotProtocol.*
 
 object Replicate {
   def opt(x: Any, ref: ActorRef): Option[Any] = PartialFunction.condOpt(x) {

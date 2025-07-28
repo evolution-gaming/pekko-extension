@@ -1,10 +1,10 @@
 package com.evolution.pekko.cluster.pubsub
 
-import org.apache.pekko.actor._
-import org.apache.pekko.cluster.pubsub.{DistributedPubSubMediator => Mediator}
+import org.apache.pekko.actor.*
+import org.apache.pekko.cluster.pubsub.DistributedPubSubMediator as Mediator
 
 class LocalPubSub extends Actor with ActorLogging {
-  import LocalPubSub._
+  import LocalPubSub.*
 
   var map: Map[String, Set[ActorRef]] = Map()
 

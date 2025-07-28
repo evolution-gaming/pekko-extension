@@ -1,9 +1,9 @@
 package com.evolution.pekko.util
 
-import org.apache.pekko.actor._
+import org.apache.pekko.actor.*
 
 import scala.collection.immutable.Queue
-import scala.concurrent.duration._
+import scala.concurrent.duration.*
 import scala.reflect.ClassTag
 import scala.util.control.NonFatal
 
@@ -14,7 +14,7 @@ class BackpressureBuffer[T] private (
   size: Int,
 ) extends Actor with ActorLogging {
 
-  import BackpressureBuffer._
+  import BackpressureBuffer.*
   import context.dispatcher
 
   require(size > 0, s"size must be > 0, but is $size")

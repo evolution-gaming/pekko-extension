@@ -9,7 +9,7 @@ import org.apache.pekko.persistence.JournalProtocol.DeleteMessagesTo
 import org.apache.pekko.persistence.SnapshotProtocol.DeleteSnapshots
 
 import scala.concurrent.Await
-import scala.concurrent.duration._
+import scala.concurrent.duration.*
 import scala.util.control.NoStackTrace
 
 trait RecoveryBreaker {
@@ -26,7 +26,7 @@ private class RecoveryBreakerImp(
   replayDelay: FiniteDuration,
 ) extends RecoveryBreaker {
 
-  import RecoveryBreaker._
+  import RecoveryBreaker.*
   import actor.context.{dispatcher, system}
 
   require(

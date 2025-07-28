@@ -39,7 +39,7 @@ class DistributedPubSubMediatorSerializing(
 ) extends DistributedPubSubMediator(settings)
 with DistributedPubSubMediatorSerializing.StreamHelper {
 
-  import DistributedPubSubMediatorSerializing._
+  import DistributedPubSubMediatorSerializing.*
   import context.dispatcher
 
   private val selfAddress = Cluster(context.system).selfAddress

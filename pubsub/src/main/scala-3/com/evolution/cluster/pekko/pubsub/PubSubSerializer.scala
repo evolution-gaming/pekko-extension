@@ -10,7 +10,7 @@ import scodec.codecs.*
 import java.io.NotSerializableException
 
 class PubSubSerializer extends SerializerWithStringManifest {
-  import PubSubSerializer._
+  import PubSubSerializer.*
 
   private val MsgManifest = "A"
 

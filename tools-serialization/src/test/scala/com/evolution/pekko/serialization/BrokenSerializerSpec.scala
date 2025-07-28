@@ -1,6 +1,6 @@
 package com.evolution.pekko.serialization
 
-import BrokenSerializer._
+import BrokenSerializer.*
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 

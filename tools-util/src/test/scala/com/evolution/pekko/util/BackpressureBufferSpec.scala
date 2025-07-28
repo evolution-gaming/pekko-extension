@@ -4,7 +4,7 @@ import com.evolution.pekko.test.ActorSpec
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
-import scala.concurrent.duration._
+import scala.concurrent.duration.*
 
 class BackpressureBufferSpec extends AnyWordSpec with ActorSpec with Matchers {
   "BackpressureBuffer" should {

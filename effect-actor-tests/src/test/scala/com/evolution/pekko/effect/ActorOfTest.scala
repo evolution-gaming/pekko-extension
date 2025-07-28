@@ -30,7 +30,7 @@ import scala.reflect.ClassTag
 import scala.util.control.NoStackTrace
 
 class ActorOfTest extends AsyncFunSuite with ActorSuite with Matchers {
-  import ActorOfTest._
+  import ActorOfTest.*
 
   for {
     async <- List(true)

@@ -7,7 +7,7 @@ import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
 import java.util.UUID
-import scala.concurrent.duration._
+import scala.concurrent.duration.*
 
 class RecoveryBreakerSpec extends AnyWordSpec with ActorSpec with Matchers {
 

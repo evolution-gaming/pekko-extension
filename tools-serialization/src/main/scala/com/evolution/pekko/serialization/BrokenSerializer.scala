@@ -6,7 +6,7 @@ import java.nio.charset.Charset
 import scala.util.control.NoStackTrace
 
 class BrokenSerializer extends SerializerWithStringManifest {
-  import BrokenSerializer._
+  import BrokenSerializer.*
 
   def identifier = 64574685
 
