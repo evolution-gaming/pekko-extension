@@ -1,6 +1,4 @@
-package com.evolution.util.dispatchers
-
-import com.evolution.util.dispatchers.Instrumented.Run
+package com.evolution.pekko.util.dispatchers
 
 import scala.PartialFunction.condOpt
 import scala.concurrent.Batchable

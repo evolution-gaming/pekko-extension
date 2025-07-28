@@ -1,6 +1,6 @@
 package org.apache.pekko.dispatch
 
-import com.evolution.util.dispatchers.Instrumented.Run
+import com.evolution.pekko.util.dispatchers.Instrumented.Run
 
 import java.util.concurrent.ForkJoinTask
 import scala.PartialFunction.condOpt

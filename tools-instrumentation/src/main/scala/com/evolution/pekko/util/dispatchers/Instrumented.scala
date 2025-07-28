@@ -1,4 +1,4 @@
-package com.evolution.util.dispatchers
+package com.evolution.pekko.util.dispatchers
 
 import com.evolution.util.BlockingTracker.Surround
 import com.evolution.util.{BlockingTracker, ExecutionThreadTracker}

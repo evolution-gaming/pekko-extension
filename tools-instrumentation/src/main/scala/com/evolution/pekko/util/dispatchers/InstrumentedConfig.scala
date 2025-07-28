@@ -1,9 +1,9 @@
-package com.evolution.util.dispatchers
+package com.evolution.pekko.util.dispatchers
 
-import com.evolutiongaming.config.ConfigHelper._
+import com.evolutiongaming.config.ConfigHelper.*
 import com.typesafe.config.Config
 
-import scala.concurrent.duration._
+import scala.concurrent.duration.*
 
 case class InstrumentedConfig(
   id: String,

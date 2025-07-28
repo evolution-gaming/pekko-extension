@@ -1,8 +1,8 @@
-package com.evolution.util.dispatchers
+package com.evolution.pekko.util.dispatchers
 
-import com.evolutiongaming.config.ConfigHelper._
+import com.evolutiongaming.config.ConfigHelper.*
 import com.typesafe.config.Config
-import org.apache.pekko.dispatch._
+import org.apache.pekko.dispatch.*
 
 /**
  * Instrumented clone of [[org.apache.pekko.dispatch.DispatcherConfigurator]].
