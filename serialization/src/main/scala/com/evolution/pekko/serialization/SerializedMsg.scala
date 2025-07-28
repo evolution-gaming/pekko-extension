@@ -1,4 +1,4 @@
-package com.evolution.serialization
+package com.evolution.pekko.serialization
 
 import org.apache.pekko.actor.{ExtendedActorSystem, Extension, ExtensionId}
 import org.apache.pekko.serialization.{Serialization, SerializationExtension, SerializerWithStringManifest}

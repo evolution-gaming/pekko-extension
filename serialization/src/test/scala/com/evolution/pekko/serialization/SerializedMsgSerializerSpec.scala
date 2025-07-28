@@ -1,4 +1,4 @@
-package com.evolution.serialization
+package com.evolution.pekko.serialization
 
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers

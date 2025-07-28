@@ -4,7 +4,7 @@ import cats.effect.{Resource, Sync}
 import cats.syntax.all.*
 import cats.{Applicative, Id, Monad, ~>}
 import com.codahale.metrics.MetricRegistry
-import com.evolution.serialization.ToBytesAble
+import com.evolution.pekko.serialization.ToBytesAble
 import com.evolutiongaming.catshelper.CatsHelper.*
 import com.evolutiongaming.catshelper.*
 import com.evolutiongaming.metrics.MetricName
