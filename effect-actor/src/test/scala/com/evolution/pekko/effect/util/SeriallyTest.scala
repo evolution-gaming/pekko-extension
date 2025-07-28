@@ -1,6 +1,6 @@
 package com.evolution.pekko.effect.util
 
-import cats.effect.{IO, Deferred}
+import cats.effect.{Deferred, IO}
 import cats.syntax.all.*
 import com.evolution.pekko.effect.IOSuite.*
 import org.scalatest.funsuite.AsyncFunSuite
