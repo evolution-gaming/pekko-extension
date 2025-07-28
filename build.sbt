@@ -63,7 +63,7 @@ val root = project
     pubsub,
     testActor,
     testHttp,
-    distributedDataTools,
+    distributedData,
     shardingStrategy,
     toolsTest,
     toolsUtil,
@@ -145,7 +145,7 @@ lazy val testHttp = module("test-http")
     ),
   )
 
-lazy val distributedDataTools = module("distributed-data-tools")
+lazy val distributedData = module("distributed-data")
   .settings(commonSettings)
   .settings(
     libraryDependencies ++= Seq(
@@ -164,7 +164,7 @@ lazy val distributedDataTools = module("distributed-data-tools")
 
 lazy val shardingStrategy = module("sharding-strategy")
   .dependsOn(
-    distributedDataTools,
+    distributedData,
   )
   .settings(commonSettings)
   .settings(
