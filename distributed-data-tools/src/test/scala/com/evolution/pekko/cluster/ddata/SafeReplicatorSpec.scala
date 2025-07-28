@@ -1,10 +1,8 @@
-package com.evolution.cluster.ddata
+package com.evolution.pekko.cluster.ddata
 
 import cats.effect.unsafe.implicits.global
 import cats.effect.{Clock, IO}
 import cats.syntax.all.*
-import com.evolution.cluster.ddata.IOSuite.*
-import com.evolution.cluster.ddata.SafeReplicator.Metrics
 import com.evolutiongaming.catshelper.MeasureDuration
 import com.evolutiongaming.smetrics.CollectorRegistry
 import org.apache.pekko.actor.ActorRef

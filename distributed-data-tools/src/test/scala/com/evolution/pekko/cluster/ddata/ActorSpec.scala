@@ -1,4 +1,4 @@
-package com.evolution.cluster.ddata
+package com.evolution.pekko.cluster.ddata
 
 import org.apache.pekko.actor.ActorSystem
 import org.apache.pekko.testkit.{DefaultTimeout, ImplicitSender, TestKit}

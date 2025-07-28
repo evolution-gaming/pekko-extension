@@ -1,4 +1,4 @@
-package com.evolution.cluster.ddata
+package com.evolution.pekko.cluster.ddata
 
 import cats.effect.IO
 import cats.effect.unsafe.implicits.global

@@ -1,4 +1,4 @@
-package com.evolution.cluster.ddata
+package com.evolution.pekko.cluster.ddata
 
 import cats.Applicative
 import cats.effect.{Resource, Sync}
