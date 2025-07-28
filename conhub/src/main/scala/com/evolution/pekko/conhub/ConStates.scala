@@ -1,6 +1,6 @@
-package com.evolution.conhub
+package com.evolution.pekko.conhub
 
-import SequentialMapHelper.*
+import com.evolution.pekko.conhub.SequentialMapHelper.*
 import com.evolutiongaming.concurrent.sequentially.{MapDirective, SequentialMap}
 import com.typesafe.scalalogging.LazyLogging
 import org.apache.pekko.actor.{Address, Scheduler}

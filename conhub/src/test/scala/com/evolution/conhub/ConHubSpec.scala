@@ -1,6 +1,7 @@
 package com.evolution.conhub
 
 import cats.data.NonEmptyList as Nel
+import com.evolution.pekko.conhub.{ConHubImpl, ConMetrics, ConStates, Conn, SearchEngine, SendMsgs, UpdateResult, Version}
 import com.evolutiongaming.concurrent.FutureHelper.*
 import com.evolutiongaming.concurrent.sequentially.Sequentially
 import org.apache.pekko.actor.Address

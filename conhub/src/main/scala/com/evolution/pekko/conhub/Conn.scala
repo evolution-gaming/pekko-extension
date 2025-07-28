@@ -1,4 +1,4 @@
-package com.evolution.conhub
+package com.evolution.pekko.conhub
 
 import org.apache.pekko.actor.Address
 

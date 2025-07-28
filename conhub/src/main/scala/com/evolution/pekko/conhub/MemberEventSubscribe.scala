@@ -1,4 +1,4 @@
-package com.evolution.conhub
+package com.evolution.pekko.conhub
 
 import com.typesafe.scalalogging.StrictLogging
 import org.apache.pekko.actor.{Actor, ActorRefFactory, Props}

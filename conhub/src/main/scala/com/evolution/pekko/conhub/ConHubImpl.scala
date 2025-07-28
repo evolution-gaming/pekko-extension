@@ -1,4 +1,4 @@
-package com.evolution.conhub
+package com.evolution.pekko.conhub
 
 import cats.data.NonEmptyList as Nel
 import com.evolutiongaming.concurrent.FutureHelper.*

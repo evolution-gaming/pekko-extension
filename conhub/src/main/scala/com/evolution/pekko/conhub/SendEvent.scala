@@ -1,8 +1,6 @@
-package com.evolution.conhub
+package com.evolution.pekko.conhub
 
 import cats.data.NonEmptyList as Nel
-import com.evolution.conhub.RemoteEvent as R
-import com.evolution.conhub.transport.{ReceiveMsg, SendMsg}
 import org.apache.pekko.actor.{ActorRefFactory, ActorSystem, Address}
 
 import scala.concurrent.duration.FiniteDuration
@@ -22,9 +20,9 @@ trait SendEvent[Id, T] {
 object SendEvent {
 
   def apply[Id, A](
-    send: R.Event => Unit,
-    idSerializer: Serializer.Str[Id],
-    conSerializer: Serializer.Bin[A],
+                    send: RemoteEvent.Event => Unit,
+                    idSerializer: Serializer.Str[Id],
+                    conSerializer: Serializer.Bin[A],
   ): SendEvent[Id, A] =
 
     new SendEvent[Id, A] {
@@ -63,7 +61,7 @@ object SendEvent {
     conSerializer: Serializer.Bin[A],
   ): SendEvent[Id, A] = {
 
-    val send = (event: R.Event) => sendMsg(RemoteEvent(event), Nil)
+    val send = (event: RemoteEvent.Event) => sendMsg(RemoteEvent(event), Nil)
     apply(send, idSerializer, conSerializer)
   }
 
@@ -130,34 +128,34 @@ object ReceiveEvent {
         }
       }
 
-      def apply(msg: R, address: Address): Unit = {
+      def apply(msg: RemoteEvent, address: Address): Unit = {
         val ctx = ConStates.Ctx.Remote(address)
 
-        def onUpdated(value: R.Value): Unit = {
+        def onUpdated(value: RemoteEvent.Value): Unit = {
           val id = idSerializer.from(value.id)
           val _ = conStates.update(id, value.version, value.bytes, address)
         }
 
-        def onSync(values: Nel[R.Value]): Unit =
+        def onSync(values: Nel[RemoteEvent.Value]): Unit =
           for {
             value <- values.toList
           } onUpdated(value)
 
-        def onDisconnected(event: R.Event.Disconnected): Unit = {
+        def onDisconnected(event: RemoteEvent.Event.Disconnected): Unit = {
           val id = idSerializer.from(event.id)
           val _ = conStates.disconnect(id, event.version, event.timeout, ctx)
         }
 
-        def onRemoved(event: R.Event.Removed): Unit = {
+        def onRemoved(event: RemoteEvent.Event.Removed): Unit = {
           val id = idSerializer.from(event.id)
           val _ = conStates.remove(id, event.version, ctx)
         }
 
         msg.event match {
-          case event: R.Event.Updated => onUpdated(event.value)
-          case R.Event.Sync(values) => onSync(values)
-          case event: R.Event.Disconnected => onDisconnected(event)
-          case event: R.Event.Removed => onRemoved(event)
+          case event: RemoteEvent.Event.Updated => onUpdated(event.value)
+          case RemoteEvent.Event.Sync(values) => onSync(values)
+          case event: RemoteEvent.Event.Disconnected => onDisconnected(event)
+          case event: RemoteEvent.Event.Removed => onRemoved(event)
           case R.Event.ConHubJoined =>
         }
       }

@@ -1,6 +1,7 @@
 package com.evolution.conhub
 
 import ConHubSpecHelper.{Msg, Send}
+import com.evolution.pekko.conhub.{Conn, MsgAndRemote, Serializer, Version}
 import scodec.bits.ByteVector
 
 import java.util.UUID

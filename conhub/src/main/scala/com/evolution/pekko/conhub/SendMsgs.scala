@@ -1,7 +1,6 @@
-package com.evolution.conhub
+package com.evolution.pekko.conhub
 
 import cats.data.NonEmptyList as Nel
-import com.evolution.conhub.transport.SendMsg
 import org.apache.pekko.actor.Address
 
 trait SendMsgs[Id, A, M] extends ConnTypes[A, M] {

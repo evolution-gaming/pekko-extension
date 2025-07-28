@@ -1,4 +1,4 @@
-package com.evolution.conhub
+package com.evolution.pekko.conhub
 
 import com.evolutiongaming.concurrent.sequentially.{MapDirective, SequentialMap}
 

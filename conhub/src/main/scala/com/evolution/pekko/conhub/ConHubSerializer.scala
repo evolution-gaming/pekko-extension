@@ -1,7 +1,6 @@
-package com.evolution.conhub
+package com.evolution.pekko.conhub
 
 import cats.data.NonEmptyList as Nel
-import com.evolution.conhub.RemoteEvent as R
 import org.apache.pekko.serialization.SerializerWithStringManifest
 import scodec.bits.{BitVector, ByteVector}
 import scodec.{Attempt, Codec, DecodeResult, codecs}
@@ -59,13 +58,13 @@ object ConHubSerializer {
 
   private val codecFiniteDuration = codecs.int64.xmap[FiniteDuration](_.millis, _.toMillis)
 
-  private val codecValue = (codecs.utf8_32 :: codecBytes :: codecVersion).as[R.Value]
+  private val codecValue = (codecs.utf8_32 :: codecBytes :: codecVersion).as[RemoteEvent.Value]
 
-  private val codecUpdated = codecValue.as[R.Event.Updated]
+  private val codecUpdated = codecValue.as[RemoteEvent.Event.Updated]
 
-  private val codecRemoved = (codecs.utf8_32 :: codecVersion).as[R.Event.Removed]
+  private val codecRemoved = (codecs.utf8_32 :: codecVersion).as[RemoteEvent.Event.Removed]
 
-  private val codecDisconnected = (codecs.utf8_32 :: codecFiniteDuration :: codecVersion).as[R.Event.Disconnected]
+  private val codecDisconnected = (codecs.utf8_32 :: codecFiniteDuration :: codecVersion).as[RemoteEvent.Event.Disconnected]
 
   private val codecSync = codecsNel(codecValue).as[RemoteEvent.Event.Sync]
 
@@ -100,10 +99,10 @@ object ConHubSerializer {
       }
 
     x.event match {
-      case a: R.Event.Updated => withMark(0, codecUpdated.encode(a))
-      case a: R.Event.Removed => withMark(1, codecRemoved.encode(a))
-      case a: R.Event.Disconnected => withMark(2, codecDisconnected.encode(a))
-      case a: R.Event.Sync => withMark(3, codecSync.encode(a))
+      case a: RemoteEvent.Event.Updated => withMark(0, codecUpdated.encode(a))
+      case a: RemoteEvent.Event.Removed => withMark(1, codecRemoved.encode(a))
+      case a: RemoteEvent.Event.Disconnected => withMark(2, codecDisconnected.encode(a))
+      case a: RemoteEvent.Event.Sync => withMark(3, codecSync.encode(a))
       case R.Event.ConHubJoined => withMark(4, Attempt.successful(BitVector.empty))
     }
   }

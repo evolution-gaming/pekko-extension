@@ -1,9 +1,9 @@
 package com.evolution.conhub
 
 import com.evolution.conhub.ConHubSpecHelper.*
-import com.evolution.conhub.ConStates.{Ctx, Diff}
-import com.evolution.conhub.RemoteEvent as R
+import com.evolution.pekko.conhub.ConStates.{Ctx, Diff}
 import com.evolution.conhub.transport.SendMsg
+import com.evolution.pekko.conhub.{ConStates, Conn, SendEvent, Serializer, UpdateResult, RemoteEvent as R}
 import com.evolution.test.ActorSpec
 import com.evolutiongaming.concurrent.sequentially.{SequentialMap, Sequentially}
 import org.apache.pekko.actor.{ActorRef, Address}
@@ -189,8 +189,8 @@ class ConStatesSpec extends AnyWordSpec with ActorSpec with Matchers with ConHub
     val states = SequentialMap[Id, Conn[Connection, Msg]](Sequentially.now)
 
     val connect = (_: ConStates[Id, Connection, Msg]) => {
-      val sendMsg = new SendMsg[RemoteEvent] {
-        def apply(msg: RemoteEvent, addresses: Iterable[Address]): Unit = pubSubProbe.ref.tell(msg, ActorRef.noSender)
+      val sendMsg = new SendMsg[R] {
+        def apply(msg: R, addresses: Iterable[Address]): Unit = pubSubProbe.ref.tell(msg, ActorRef.noSender)
       }
       SendEvent(sendMsg, Serializer.identity[Id], ConnectionSerializer)
     }
