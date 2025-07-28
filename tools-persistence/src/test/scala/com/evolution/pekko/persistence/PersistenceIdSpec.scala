@@ -1,4 +1,4 @@
-package com.evolution.persistence
+package com.evolution.pekko.persistence
 
 import org.scalatest.OptionValues._
 import org.scalatest.matchers.should.Matchers._

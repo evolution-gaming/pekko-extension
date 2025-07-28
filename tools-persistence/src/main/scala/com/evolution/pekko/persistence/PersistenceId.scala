@@ -1,4 +1,4 @@
-package com.evolution.persistence
+package com.evolution.pekko.persistence
 
 import com.evolution.sharding.ShardEntry
 

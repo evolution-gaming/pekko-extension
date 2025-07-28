@@ -1,4 +1,4 @@
-package com.evolution.util
+package com.evolution.pekko.util
 
 import org.apache.pekko.actor.{Actor, ActorLogging, ActorRef, Props, Status}
 import org.apache.pekko.persistence.{JournalFailure, PublicPersistence, Replicate, SnapshotFailure}

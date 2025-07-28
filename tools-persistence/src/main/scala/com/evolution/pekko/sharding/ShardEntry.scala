@@ -1,4 +1,4 @@
-package com.evolution.sharding
+package com.evolution.pekko.sharding
 
 import org.apache.pekko.actor.{ActorPath, ActorRef}
 
