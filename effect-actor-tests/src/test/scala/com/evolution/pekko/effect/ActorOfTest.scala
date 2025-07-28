@@ -5,6 +5,7 @@ import cats.effect.syntax.all.*
 import cats.effect.unsafe.implicits.global
 import cats.syntax.all.*
 import com.evolution.pekko.effect.IOSuite.*
+import com.evolution.pekko.effect.testkit.Probe
 import com.evolution.pekko.effect.{
   ActorCtx,
   ActorEffect,
@@ -17,7 +18,6 @@ import com.evolution.pekko.effect.{
   ReceiveOf,
   Tell,
 }
-import com.evolution.pekko.effect.testkit.Probe
 import com.evolutiongaming.catshelper.CatsHelper.*
 import com.evolutiongaming.catshelper.{FromFuture, ToFuture}
 import org.apache.pekko.actor.*

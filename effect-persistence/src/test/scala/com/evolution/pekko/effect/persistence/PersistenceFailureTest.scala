@@ -3,9 +3,9 @@ package com.evolution.pekko.effect.persistence
 import cats.effect.unsafe.implicits.global
 import cats.effect.{IO, Resource}
 import cats.syntax.all.*
-import com.evolution.pekko.effect.{Envelope, Receive}
 import com.evolution.pekko.effect.persistence.Events
 import com.evolution.pekko.effect.testkit.TestActorSystem
+import com.evolution.pekko.effect.{Envelope, Receive}
 import com.evolutiongaming.catshelper.LogOf
 import org.apache.pekko.actor.Props
 import org.apache.pekko.persistence.journal.AsyncWriteJournal

@@ -4,9 +4,9 @@ import cats.effect.unsafe.implicits.global
 import cats.effect.{IO, Resource}
 import cats.syntax.all.*
 import com.evolution.pekko.effect.IOSuite.*
-import com.evolution.pekko.effect.{ActorRefOf, ActorSuite}
 import com.evolution.pekko.effect.persistence.TypeName
 import com.evolution.pekko.effect.testkit.Probe
+import com.evolution.pekko.effect.{ActorRefOf, ActorSuite}
 import com.evolutiongaming.catshelper.LogOf
 import com.typesafe.config.ConfigFactory
 import org.apache.pekko.actor.{Actor, Props}

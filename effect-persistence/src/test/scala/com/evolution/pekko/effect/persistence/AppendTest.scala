@@ -4,8 +4,8 @@ import cats.data.NonEmptyList as Nel
 import cats.effect.unsafe.implicits.global
 import cats.effect.{Async, IO, Ref, Sync}
 import cats.syntax.all.*
-import com.evolution.pekko.effect.IOSuite.*
 import com.evolution.pekko.effect.*
+import com.evolution.pekko.effect.IOSuite.*
 import com.evolutiongaming.catshelper.CatsHelper.*
 import com.evolutiongaming.catshelper.{ToFuture, ToTry}
 import org.scalatest.funsuite.AsyncFunSuite

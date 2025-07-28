@@ -1,8 +1,8 @@
 package com.evolution.pekko.effect
 
 import cats.effect.*
-import cats.syntax.all.*
 import cats.effect.syntax.all.*
+import cats.syntax.all.*
 import com.evolution.pekko.effect.ActorVar.Directive
 import com.evolution.pekko.effect.Fail.implicits.*
 import com.evolutiongaming.catshelper.CatsHelper.*
