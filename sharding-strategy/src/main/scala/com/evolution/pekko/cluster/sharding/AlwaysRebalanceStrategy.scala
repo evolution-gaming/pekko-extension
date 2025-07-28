@@ -1,7 +1,7 @@
 package com.evolution.pekko.cluster.sharding
 
 import cats.effect.Sync
-import cats.implicits.*
+import cats.syntax.all.*
 import org.apache.pekko.actor.ActorRef
 
 import scala.util.Random

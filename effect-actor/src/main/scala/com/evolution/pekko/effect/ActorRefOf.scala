@@ -1,7 +1,6 @@
 package com.evolution.pekko.effect
 
-import cats.effect.kernel.MonadCancel
-import cats.effect.{Resource, Sync}
+import cats.effect.{MonadCancel, Resource, Sync}
 import cats.~>
 import org.apache.pekko.actor.{ActorRef, ActorRefFactory, Props}
 

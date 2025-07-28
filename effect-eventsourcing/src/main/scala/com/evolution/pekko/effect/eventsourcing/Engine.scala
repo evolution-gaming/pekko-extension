@@ -2,7 +2,7 @@ package com.evolution.pekko.effect.eventsourcing
 
 import cats.data.NonEmptyList as Nel
 import cats.effect.*
-import cats.effect.implicits.*
+import cats.effect.implicits.* // TODO replace with `cats.effect.syntax.all.*` (https://github.com/typelevel/cats-effect/issues/4462)
 import cats.syntax.all.*
 import cats.{Applicative, FlatMap, Functor, Monad}
 import com.evolution.pekko.effect
@@ -49,11 +49,11 @@ object Engine {
     result: Either[Throwable, SeqNr],
   ): Engine[F, S, E] = new Engine[F, S, E] {
 
-    val effective = initial.pure[F]
+    val effective: F[State[S]] = initial.pure[F]
 
-    val optimistic = initial.pure[F]
+    val optimistic: F[State[S]] = initial.pure[F]
 
-    def apply[A](load: F[Validate[F, S, E, A]]) =
+    def apply[A](load: F[Validate[F, S, E, A]]): F[F[A]] =
       for {
         validate <- load
         directive <- validate(initial.value, initial.seqNr)
@@ -117,9 +117,9 @@ object Engine {
           .map { closeOnError =>
             new Append {
 
-              def apply(events: Events[E]) = closeOnError(append(events))
+              def apply(events: Events[E]): F[SeqNr] = closeOnError(append(events))
 
-              def error = closeOnError.error
+              def error: F[Option[Throwable]] = closeOnError.error
             }
           }
     }
@@ -205,7 +205,7 @@ object Engine {
           load.attempt
             .flatMap {
               case Right(validate) =>
-                val result = Validate[S] { (state, seqNr) =>
+                val result = Validate.apply[S] { (state, seqNr) =>
                   validate(state, seqNr).attempt
                     .flatMap {
                       case Right(directive) =>
@@ -250,13 +250,13 @@ object Engine {
 
         new Engine[F, S, E] {
 
-          def state = stateRef.get.map(_.value)
+          def state: F[Engine.State[S]] = stateRef.get.map(_.value)
 
           def effective: F[Engine.State[S]] = effectiveRef.get
 
           def optimistic: F[Engine.State[S]] = stateRef.get.map(_.value)
 
-          def apply[A](load: F[Validate[F, S, E, A]]) =
+          def apply[A](load: F[Validate[F, S, E, A]]): F[F[A]] =
             for {
               d <- Deferred[F, Either[Throwable, A]]
               f <- loadOf(load, d).start
@@ -445,7 +445,7 @@ object Engine {
 
           def optimistic: F[State[S]] = engine.optimistic
 
-          def apply[A](load: F[Validate[F, S, E, A]]) =
+          def apply[A](load: F[Validate[F, S, E, A]]): F[F[A]] =
             for {
               released <- released.get
               _ <- if (released) Engine.released.raiseError[F, Unit] else ().pure[F]

@@ -1,7 +1,7 @@
 package com.evolution.pekko.cluster.sharding
 
 import cats.effect.{Clock, Ref, Sync}
-import cats.implicits.*
+import cats.syntax.all.*
 import cats.{Applicative, FlatMap, Monad, ~>}
 import com.evolutiongaming.catshelper.ClockHelper.*
 import com.evolutiongaming.catshelper.ToFuture

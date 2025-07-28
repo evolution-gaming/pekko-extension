@@ -1,8 +1,8 @@
 package com.evolution.pekko.effect.eventsourcing
 
 import cats.effect.*
+import cats.effect.Ref
 import cats.effect.implicits.effectResourceOps
-import cats.effect.kernel.Ref
 import cats.effect.unsafe.implicits.global
 import cats.syntax.all.*
 import com.evolution.pekko.effect.IOSuite.*

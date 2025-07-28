@@ -1,6 +1,6 @@
 package com.evolution.pekko.effect.util
 
-import cats.effect.implicits.*
+import cats.effect.syntax.all.*
 import cats.effect.unsafe.implicits.global
 import cats.effect.{Async, IO, Resource}
 import cats.syntax.all.*

@@ -1,7 +1,7 @@
 package com.evolution.pekko.effect.persistence
 
 import cats.effect.{Async, Deferred, Resource, Sync}
-import cats.implicits.*
+import cats.syntax.all.*
 import cats.{Applicative, FlatMap, Monad, ~>}
 import com.evolution.pekko.effect.Act
 import com.evolution.pekko.effect.Fail

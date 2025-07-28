@@ -1,8 +1,7 @@
 package com.evolution.pekko.effect.eventsourcing
 
-import cats.kernel.Semigroup
 import cats.syntax.all.*
-import cats.{Applicative, FlatMap, Functor, Monad}
+import cats.{Applicative,Semigroup,  FlatMap, Functor, Monad}
 import com.evolution.pekko.effect.persistence.{Events, SeqNr}
 
 /**

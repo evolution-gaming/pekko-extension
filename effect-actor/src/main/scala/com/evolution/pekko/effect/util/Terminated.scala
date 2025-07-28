@@ -1,7 +1,6 @@
 package com.evolution.pekko.effect.util
 
-import cats.effect.Concurrent
-import cats.effect.kernel.Deferred
+import cats.effect.{Concurrent, Deferred}
 import cats.syntax.all.*
 import com.evolution.pekko.effect.{ActorEffect, ActorRefOf}
 import com.evolutiongaming.catshelper.CatsHelper.*

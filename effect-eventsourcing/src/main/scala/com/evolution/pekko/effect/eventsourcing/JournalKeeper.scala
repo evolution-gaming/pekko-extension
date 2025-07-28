@@ -1,9 +1,8 @@
 package com.evolution.pekko.effect.eventsourcing
 
-import cats.Applicative
-import cats.effect.implicits.*
+import cats.{Order, Applicative}
+import cats.effect.syntax.all.*
 import cats.effect.{Clock, Concurrent, Ref}
-import cats.kernel.Order
 import cats.syntax.all.*
 import com.evolution.pekko.effect.ActorStoppedError
 import com.evolution.pekko.effect.persistence.{SeqNr, SnapshotMetadata, Snapshotter}

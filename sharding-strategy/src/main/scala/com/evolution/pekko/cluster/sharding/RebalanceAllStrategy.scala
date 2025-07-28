@@ -1,7 +1,7 @@
 package com.evolution.pekko.cluster.sharding
 
 import cats.Applicative
-import cats.implicits.*
+import cats.syntax.all.*
 
 object RebalanceAllStrategy {
 

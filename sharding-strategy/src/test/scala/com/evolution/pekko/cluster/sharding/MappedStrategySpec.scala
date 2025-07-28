@@ -1,6 +1,6 @@
 package com.evolution.pekko.cluster.sharding
 
-import cats.implicits.*
+import cats.syntax.all.*
 import cats.{Id, catsParallelForId}
 import org.apache.pekko.actor.Address
 import org.scalatest.funsuite.AnyFunSuite

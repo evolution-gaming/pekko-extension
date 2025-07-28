@@ -1,7 +1,7 @@
 package com.evolution.pekko.cluster.sharding
 
 import cats.FlatMap
-import cats.implicits.*
+import cats.syntax.all.*
 import com.evolutiongaming.catshelper.FromFuture
 import org.apache.pekko.cluster.sharding.ShardCoordinator.ShardAllocationStrategy
 

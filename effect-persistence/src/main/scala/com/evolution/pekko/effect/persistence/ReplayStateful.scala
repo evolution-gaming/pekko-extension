@@ -1,7 +1,6 @@
 package com.evolution.pekko.effect.persistence
 
-import cats.effect.Sync
-import cats.effect.kernel.Ref
+import cats.effect.{Sync, Ref}
 import cats.syntax.all.*
 
 trait ReplayStateful[F[_], S, E] {

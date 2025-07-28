@@ -8,9 +8,9 @@ import java.util.concurrent.atomic.AtomicReference
 /**
  * Provides serial access to an internal state.
  *
- * The class differs from [[cats.effect.kernel.Ref]] by the ability to execute an effect and a
- * guarantee that the operations will be executed in the same order these arrived given these were
- * called from the same thread.
+ * The class differs from [[cats.effect.Ref]] by the ability to execute an effect and a guarantee
+ * that the operations will be executed in the same order these arrived given these were called from
+ * the same thread.
  */
 private[effect] trait Serially[F[_], A] {
   def apply(f: A => F[A]): F[Unit]

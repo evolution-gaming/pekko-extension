@@ -1,6 +1,6 @@
 package com.evolution.pekko.effect.cluster.sharding
 
-import cats.effect.implicits.*
+import cats.effect.syntax.all.*
 import cats.effect.{Async, Resource, Sync}
 import cats.syntax.all.*
 import com.evolution.pekko.effect.cluster.{DataCenter, Role}

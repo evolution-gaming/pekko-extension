@@ -2,7 +2,7 @@ package com.evolution.pekko.cluster.sharding
 
 import cats.effect.syntax.resource.*
 import cats.effect.{Ref, Resource, Sync}
-import cats.implicits.*
+import cats.syntax.all.*
 import cats.{FlatMap, Parallel, ~>}
 import com.evolution.pekko.cluster.ddata.SafeReplicator
 import com.evolutiongaming.catshelper.{FromFuture, ToFuture}

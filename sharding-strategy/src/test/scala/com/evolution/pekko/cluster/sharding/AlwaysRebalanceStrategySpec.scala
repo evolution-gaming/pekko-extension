@@ -1,7 +1,7 @@
 package com.evolution.pekko.cluster.sharding
 
 import cats.effect.IO
-import cats.implicits.*
+import cats.syntax.all.*
 import com.evolution.pekko.cluster.sharding.IOSuite.*
 import org.scalatest.funsuite.AsyncFunSuite
 import org.scalatest.matchers.should.Matchers

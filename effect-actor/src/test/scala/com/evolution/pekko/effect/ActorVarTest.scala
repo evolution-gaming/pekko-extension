@@ -1,8 +1,7 @@
 package com.evolution.pekko.effect
 
 import cats.effect.*
-import cats.effect.implicits.*
-import cats.effect.kernel.Deferred
+import cats.effect.syntax.all.*
 import cats.effect.unsafe.implicits.global
 import cats.syntax.all.*
 import com.evolution.pekko.effect.ActorVar.Directive

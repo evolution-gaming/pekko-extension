@@ -1,9 +1,9 @@
 package com.evolution.pekko.effect.persistence
 
 import cats.data.NonEmptyList as Nel
-import cats.kernel.{Eq, Semigroup}
 import cats.syntax.all.*
 import cats.{Apply, Eval, NonEmptyTraverse, Order, Show}
+import cats.{Eq, Semigroup}
 
 /**
  * @param values
