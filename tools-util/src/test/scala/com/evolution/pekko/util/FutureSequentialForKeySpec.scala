@@ -1,4 +1,4 @@
-package com.evolution.util
+package com.evolution.pekko.util
 
 import com.evolution.pekko.test.ActorSpec
 import org.scalatest.concurrent.{ScalaFutures, TimeLimits}

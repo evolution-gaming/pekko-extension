@@ -1,11 +1,11 @@
-package com.evolution.util
+package com.evolution.pekko.util
 
-import org.apache.pekko.actor._
+import org.apache.pekko.actor.*
 import org.apache.pekko.pattern.ask
 import org.apache.pekko.util.Timeout
 
 import scala.collection.concurrent.TrieMap
-import scala.concurrent.duration._
+import scala.concurrent.duration.*
 import scala.concurrent.{ExecutionContext, Future}
 import scala.util.Try
 
@@ -43,7 +43,7 @@ extends FutureSequentialForKey {
   }
 
   private class Supervisor extends Actor {
-    import Supervisor._
+    import Supervisor.*
 
     def receive = receive(Map())
 
@@ -70,7 +70,7 @@ extends FutureSequentialForKey {
   }
 
   private class FutureSupervisor extends Actor {
-    import FutureSupervisor._
+    import FutureSupervisor.*
 
     context setReceiveTimeout 10.minutes
 

@@ -1,11 +1,11 @@
-package com.evolution.util
+package com.evolution.pekko.util
 
 import com.typesafe.scalalogging.LazyLogging
 
 import java.lang.management.{ManagementFactory, ThreadMXBean}
 import java.util.concurrent.{Executors, ScheduledExecutorService}
 import scala.collection.concurrent.TrieMap
-import scala.concurrent.duration._
+import scala.concurrent.duration.*
 import scala.util.control.NonFatal
 
 trait ExecutionThreadTracker {
