@@ -1,10 +1,9 @@
-package com.evolution.pekkoeffect
+package com.evolution.pekko.effect
 
 import cats.arrow.FunctionK
 import cats.effect.unsafe.implicits.global
 import cats.effect.{Async, IO, Sync}
 import cats.syntax.all.*
-import com.evolution.pekko.effect.{ActorRefOf, Envelope, ReplyStatus}
 import com.evolution.pekko.effect.IOSuite.*
 import com.evolution.pekkoeffect.testkit.Probe
 import com.evolutiongaming.catshelper.{FromFuture, ToFuture}

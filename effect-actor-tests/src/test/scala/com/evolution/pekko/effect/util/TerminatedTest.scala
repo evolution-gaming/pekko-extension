@@ -1,10 +1,10 @@
-package com.evolution.pekkoeffect.util
+package com.evolution.pekko.effect.util
 
 import cats.effect.implicits.*
 import cats.effect.unsafe.implicits.global
 import cats.effect.{Async, IO, Resource}
 import cats.syntax.all.*
-import com.evolution.pekko.effect.{ActorEffect, ActorRefOf, Call, Receive, ReceiveOf}
+import com.evolution.pekko.effect.{ActorEffect, ActorRefOf, ActorSuite, Call, Receive, ReceiveOf}
 import com.evolution.pekko.effect.util.Terminated
 import com.evolution.pekkoeffect.*
 import com.evolution.pekko.effect.IOSuite.*

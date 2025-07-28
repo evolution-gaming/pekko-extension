@@ -1,9 +1,8 @@
-package com.evolution.pekkoeffect
+package com.evolution.pekko.effect
 
 import cats.effect.*
 import cats.effect.unsafe.implicits.global
 import cats.syntax.all.*
-import com.evolution.pekko.effect.{ActorEffect, ActorRefOf, Call, Receive, Reply}
 import com.evolution.pekko.effect.IOSuite.*
 import com.evolution.pekkoeffect.testkit.Probe
 import com.evolutiongaming.catshelper.{FromFuture, ToFuture}
@@ -12,7 +11,7 @@ import org.scalatest.funsuite.AsyncFunSuite
 import org.scalatest.matchers.should.Matchers
 
 class CounterSpec extends AsyncFunSuite with ActorSuite with Matchers {
-  import CounterSpec._
+  import CounterSpec.*
 
   test("counter actor") {
     testCounterActor[IO](actorSystem).run()

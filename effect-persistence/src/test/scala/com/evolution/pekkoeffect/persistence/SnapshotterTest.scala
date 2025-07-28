@@ -4,7 +4,7 @@ import cats.effect.implicits.effectResourceOps
 import cats.effect.unsafe.implicits.global
 import cats.effect.{Async, Deferred, IO, Sync}
 import cats.syntax.all.*
-import com.evolution.pekko.effect.ActorRefOf
+import com.evolution.pekko.effect.{ActorRefOf, ActorSuite}
 import com.evolution.pekkoeffect.*
 import com.evolution.pekko.effect.IOSuite.*
 import com.evolution.pekkoeffect.testkit.Probe

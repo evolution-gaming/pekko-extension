@@ -2,7 +2,7 @@ package com.evolution.pekkoeffect.eventsourcing
 
 import cats.effect.*
 import cats.effect.implicits.effectResourceOps
-import com.evolution.pekkoeffect.ActorSuite
+import com.evolution.pekko.effect.ActorSuite
 import com.evolutiongaming.catshelper.{FromFuture, ToFuture}
 import org.apache.pekko.stream.SystemMaterializer
 

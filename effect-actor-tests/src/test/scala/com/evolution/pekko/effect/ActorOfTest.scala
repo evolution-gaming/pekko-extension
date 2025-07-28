@@ -1,4 +1,4 @@
-package com.evolution.pekkoeffect
+package com.evolution.pekko.effect
 
 import cats.effect.*
 import cats.effect.syntax.all.*

@@ -1,10 +1,9 @@
-package com.evolution.pekkoeffect
+package com.evolution.pekko.effect
 
 import cats.arrow.FunctionK
 import cats.effect.unsafe.implicits.global
 import cats.effect.{Async, IO, Sync}
 import cats.syntax.all.*
-import com.evolution.pekko.effect.{ActorRefOf, Envelope, Reply}
 import com.evolution.pekko.effect.IOSuite.*
 import com.evolution.pekkoeffect.testkit.Probe
 import com.evolutiongaming.catshelper.{FromFuture, ToFuture}
@@ -13,7 +12,7 @@ import org.apache.pekko.testkit.TestActors
 import org.scalatest.funsuite.AsyncFunSuite
 import org.scalatest.matchers.should.Matchers
 
-class ReplyTest extends AsyncFunSuite with ActorSuite with Matchers {
+class TellSpec extends AsyncFunSuite with ActorSuite with Matchers {
 
   test("toString") {
     `toString`[IO](actorSystem).run()
@@ -23,33 +22,36 @@ class ReplyTest extends AsyncFunSuite with ActorSuite with Matchers {
     `fromActorRef`[IO](actorSystem).run()
   }
 
-  private def `toString`[F[_]: Async](actorSystem: ActorSystem) = {
+  private def `toString`[F[_]: Sync](actorSystem: ActorSystem) = {
     val actorRefOf = ActorRefOf.fromActorRefFactory[F](actorSystem)
     val actorRef = actorRefOf(TestActors.blackholeProps)
-    (actorRef, actorRef).tupled.use {
-      case (to, from) =>
-        val reply = Reply.fromActorRef[F](to = to, from = from)
-        Sync[F].delay {
-          reply.toString shouldEqual s"Reply(${ to.path }, ${ from.path })"
-        }
+    actorRef.use { actorRef =>
+      val tell = Tell.fromActorRef[F](actorRef)
+      Sync[F].delay {
+        tell.toString shouldEqual s"Tell(${ actorRef.path })"
+      }
     }
   }
 
   private def `fromActorRef`[F[_]: Async: ToFuture: FromFuture](actorSystem: ActorSystem) = {
     val actorRefOf = ActorRefOf.fromActorRefFactory[F](actorSystem)
     val resources = for {
-      probe <- Probe.of[F](actorRefOf)
       actorRef <- actorRefOf(TestActors.blackholeProps)
-    } yield (probe, actorRef)
+      probe <- Probe.of[F](actorRefOf)
+    } yield (actorRef, probe)
 
     resources.use {
-      case (probe, from) =>
-        val reply = Reply.fromActorRef[F](to = probe.actorEffect.toUnsafe, from = from).mapK(FunctionK.id)
+      case (actorRef, probe) =>
+        val tell = Tell.fromActorRef[F](probe.actorEffect.toUnsafe).mapK(FunctionK.id)
         for {
-          a <- probe.expect[String]
-          _ <- reply("msg")
-          a <- a
-          _ <- Sync[F].delay(a shouldEqual Envelope("msg", from))
+          envelope <- probe.expect[String]
+          _ <- tell("msg0")
+          envelope <- envelope
+          _ <- Sync[F].delay(envelope shouldEqual Envelope("msg0", actorSystem.deadLetters))
+          envelope <- probe.expect[String]
+          _ <- tell("msg1", actorRef.some)
+          envelope <- envelope
+          _ <- Sync[F].delay(envelope shouldEqual Envelope("msg1", actorRef))
         } yield {}
     }
   }

@@ -6,7 +6,7 @@ import cats.effect.kernel.Ref
 import cats.effect.syntax.all.*
 import cats.effect.unsafe.implicits.global
 import cats.syntax.all.*
-import com.evolution.pekko.effect.{ActorCtx, ActorEffect, ActorRefOf, Envelope, Receive, Reply}
+import com.evolution.pekko.effect.{ActorCtx, ActorEffect, ActorRefOf, ActorSuite, Envelope, Receive, Reply}
 import com.evolution.pekkoeffect.*
 import com.evolution.pekko.effect.IOSuite.*
 import com.evolution.pekkoeffect.persistence.InstrumentEventSourced.Action

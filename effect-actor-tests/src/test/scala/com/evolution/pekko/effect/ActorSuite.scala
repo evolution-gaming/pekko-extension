@@ -1,4 +1,4 @@
-package com.evolution.pekkoeffect
+package com.evolution.pekko.effect
 
 import cats.effect.IO
 import cats.effect.unsafe.implicits.global
