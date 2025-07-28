@@ -1,6 +1,7 @@
-package com.evolution.pekkoeffect.eventsourcing
+package com.evolution.pekko.effect.eventsourcing
 
 import cats.effect.*
+import com.evolution.pekko.effect.eventsourcing.Engine
 import com.evolutiongaming.catshelper.{FromFuture, ToFuture}
 
 class EngineCatsEffectTest extends EngineTestCases {

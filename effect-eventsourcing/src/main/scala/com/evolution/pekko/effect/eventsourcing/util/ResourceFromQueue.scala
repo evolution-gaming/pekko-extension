@@ -1,4 +1,4 @@
-package com.evolution.pekkoeffect.eventsourcing.util
+package com.evolution.pekko.effect.eventsourcing.util
 
 import cats.effect.{Resource, Sync}
 import cats.syntax.all.*

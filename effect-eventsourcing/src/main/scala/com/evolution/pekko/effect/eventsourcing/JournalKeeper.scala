@@ -1,4 +1,4 @@
-package com.evolution.pekkoeffect.eventsourcing
+package com.evolution.pekko.effect.eventsourcing
 
 import cats.Applicative
 import cats.effect.implicits.*

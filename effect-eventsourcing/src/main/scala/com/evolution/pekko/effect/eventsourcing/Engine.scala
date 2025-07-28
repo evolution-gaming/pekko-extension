@@ -1,4 +1,4 @@
-package com.evolution.pekkoeffect.eventsourcing
+package com.evolution.pekko.effect.eventsourcing
 
 import cats.data.NonEmptyList as Nel
 import cats.effect.*
@@ -7,7 +7,6 @@ import cats.syntax.all.*
 import cats.{Applicative, FlatMap, Functor, Monad}
 import com.evolution.pekko.effect.util.CloseOnError
 import com.evolution.pekkoeffect
-import com.evolution.pekkoeffect.eventsourcing.util.ResourceFromQueue
 import com.evolution.pekkoeffect.persistence.{Events, SeqNr}
 import com.evolutiongaming.catshelper.CatsHelper.*
 import com.evolutiongaming.catshelper.{FromFuture, Runtime, SerParQueue, ToFuture}
@@ -16,7 +15,7 @@ import org.apache.pekko.stream.*
 import org.apache.pekko.stream.scaladsl.{Sink, Source}
 
 trait Engine[F[_], S, E] {
-  import Engine._
+  import Engine.*
 
   /**
    * Get effective state. Effective state is latest persisted state, should be used for all async

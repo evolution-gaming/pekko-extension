@@ -1,4 +1,4 @@
-package com.evolution.pekkoeffect.eventsourcing
+package com.evolution.pekko.effect.eventsourcing
 
 import cats.Monad
 import cats.effect.*
@@ -15,7 +15,7 @@ import java.time.Instant
 import scala.concurrent.duration.*
 
 class JournalKeeperTest extends AsyncFunSuite with Matchers {
-  import JournalKeeperTest._
+  import JournalKeeperTest.*
 
   test("save snapshot on startup") {
     `save snapshot on startup`[IO].run()
