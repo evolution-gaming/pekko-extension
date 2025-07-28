@@ -1,4 +1,4 @@
-package com.evolution.pekkoeffect.testkit
+package com.evolution.pekko.effect.testkit
 
 import cats.effect.implicits.effectResourceOps
 import cats.effect.kernel.Deferred
