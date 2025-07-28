@@ -3,7 +3,8 @@ package org.apache.pekko.persistence
 import cats.effect.unsafe.implicits.global
 import cats.effect.{Deferred, IO}
 import cats.syntax.all.*
-import com.evolution.pekkoeffect.persistence.{EventSourcedId, EventStore, Events, SeqNr}
+import com.evolution.pekko.effect.persistence.{EventSourcedId, EventStore}
+import com.evolution.pekkoeffect.persistence.{Events, SeqNr}
 import com.evolution.pekkoeffect.testkit.TestActorSystem
 import com.evolution.pekkoeffect.util.AtomicRef
 import com.evolutiongaming.catshelper.LogOf

@@ -4,7 +4,7 @@ import cats.effect.implicits.effectResourceOps
 import cats.effect.{Async, Concurrent, Ref, Resource}
 import cats.syntax.all.*
 import com.evolution.pekko.effect.*
-import com.evolution.pekkoeffect.persistence.{EventStore, Events, SeqNr, SnapshotStore}
+import com.evolution.pekkoeffect.persistence.{Events, SeqNr}
 import com.evolutiongaming.catshelper.{Log, LogOf, ToFuture}
 import org.apache.pekko.actor.Actor
 import org.apache.pekko.persistence.SnapshotSelectionCriteria

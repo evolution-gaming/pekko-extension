@@ -1,4 +1,4 @@
-package com.evolution.pekkoeffect.persistence
+package com.evolution.pekko.effect.persistence
 
 import cats.data.NonEmptyList as Nel
 import cats.kernel.{Eq, Semigroup}

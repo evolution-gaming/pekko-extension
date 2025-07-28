@@ -3,8 +3,9 @@ package org.apache.pekko.persistence
 import cats.effect.syntax.all.*
 import cats.effect.{Async, Sync}
 import cats.syntax.all.*
-import com.evolution.pekko.effect.ActorEffect
-import com.evolution.pekkoeffect.persistence.{EventSourcedId, EventStore, Events, SeqNr}
+import com.evolution.pekko.effect.{ActorEffect, persistence}
+import com.evolution.pekko.effect.persistence.{EventSourcedId, EventStore}
+import com.evolution.pekkoeffect.persistence.{Events, SeqNr}
 import com.evolutiongaming.catshelper.{FromFuture, LogOf, ToTry}
 import com.evolutiongaming.sstream
 
@@ -20,14 +21,14 @@ object EventStoreInterop {
   with NoStackTrace
 
   /**
-   * Create instance of [[com.evolution.pekkoeffect.persistence.EventStore]] that uses Pekko
+   * Create instance of [[EventStore]] that uses Pekko
    * Persistence journal plugin under the hood.
    *
    * Journal plugin uses "push" model to recover events (i.e. read events from underline DB) while
-   * [[com.evolution.pekkoeffect.persistence.EventStore]] provides "pull" API via
+   * [[EventStore]] provides "pull" API via
    * [[com.evolutiongaming.sstream.Stream]]. To overcome this limitation, the interop uses internal
    * buffer to hold events provided by Pekko' journal plugin before they will be consumed (i.e.
-   * deleted from buffer) as [[com.evolution.pekkoeffect.persistence.EventStore.events]] stream. The
+   * deleted from buffer) as [[persistence.EventStore.events]] stream. The
    * output stream is lazy by itself and actual event consumption from the buffer will happened only
    * on the stream materialization.
    *

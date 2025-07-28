@@ -1,4 +1,4 @@
-package com.evolution.pekkoeffect
+package com.evolution.pekko.effect
 
 package object persistence {
 

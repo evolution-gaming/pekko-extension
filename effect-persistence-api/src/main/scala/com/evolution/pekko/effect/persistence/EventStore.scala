@@ -1,5 +1,6 @@
-package com.evolution.pekkoeffect.persistence
+package com.evolution.pekko.effect.persistence
 
+import com.evolution.pekkoeffect.persistence.SeqNr
 import com.evolutiongaming.sstream
 
 /**

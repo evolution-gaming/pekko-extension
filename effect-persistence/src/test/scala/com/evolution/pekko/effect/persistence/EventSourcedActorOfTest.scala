@@ -7,7 +7,7 @@ import cats.effect.unsafe.implicits.global
 import cats.syntax.all.*
 import com.evolution.pekko.effect.IOSuite.*
 import com.evolution.pekko.effect.*
-import com.evolution.pekkoeffect.persistence.{EventSourcedId, Events, SeqNr}
+import com.evolution.pekkoeffect.persistence.{Events, SeqNr}
 import com.evolution.pekkoeffect.testkit.Probe
 import com.evolutiongaming.catshelper.CatsHelper.*
 import com.evolutiongaming.catshelper.{FromFuture, LogOf, ToFuture, ToTry}

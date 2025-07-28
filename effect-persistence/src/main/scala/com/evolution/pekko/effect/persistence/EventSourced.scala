@@ -2,7 +2,6 @@ package com.evolution.pekko.effect.persistence
 
 import cats.syntax.all.*
 import cats.{Functor, Show}
-import com.evolution.pekkoeffect.persistence.EventSourcedId
 import org.apache.pekko.persistence.Recovery
 
 /**

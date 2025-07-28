@@ -4,7 +4,7 @@ import cats.effect.unsafe.implicits.global
 import cats.effect.{IO, Resource}
 import cats.syntax.all.*
 import com.evolution.pekko.effect.{Envelope, Receive}
-import com.evolution.pekkoeffect.persistence.{EventSourcedId, Events}
+import com.evolution.pekkoeffect.persistence.Events
 import com.evolution.pekkoeffect.testkit.TestActorSystem
 import com.evolutiongaming.catshelper.LogOf
 import org.apache.pekko.actor.Props
