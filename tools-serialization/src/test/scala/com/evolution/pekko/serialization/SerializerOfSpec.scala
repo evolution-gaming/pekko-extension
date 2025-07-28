@@ -1,4 +1,4 @@
-package com.evolution.serialization
+package com.evolution.pekko.serialization
 
 import com.evolution.test.ActorSpec
 import org.apache.pekko.serialization.ByteArraySerializer
