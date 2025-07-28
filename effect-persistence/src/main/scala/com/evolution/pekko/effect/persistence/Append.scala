@@ -1,0 +1,208 @@
+package com.evolution.pekko.effect.persistence
+
+import cats.effect.{Async, Deferred, Resource, Sync}
+import cats.implicits.*
+import cats.{Applicative, FlatMap, Monad, ~>}
+import com.evolution.pekko.effect.Fail
+import com.evolution.pekko.effect.util.AtomicRef
+import com.evolution.pekko.effect.Act
+import com.evolutiongaming.catshelper.CatsHelper.*
+import com.evolutiongaming.catshelper.{Log, MeasureDuration, MonadThrowable, ToFuture}
+import org.apache.pekko.persistence.*
+
+import scala.collection.immutable.Queue
+
+/**
+ * @see
+ *   [[org.apache.pekko.persistence.PersistentActor.persistAllAsync]]
+ */
+trait Append[F[_], -A] {
+
+  /**
+   * @param events
+   *   to be saved, inner Nel[A] will be persisted atomically, outer Nel[_] is for batching
+   * @return
+   *   SeqNr of last event
+   */
+  def apply(events: Events[A]): F[F[SeqNr]]
+}
+
+object Append {
+
+  def const[F[_], A](seqNr: F[F[SeqNr]]): Append[F, A] = {
+    class Const
+    new Const with Append[F, A] {
+      def apply(events: Events[A]) = seqNr
+    }
+  }
+
+  def empty[F[_]: Applicative, A]: Append[F, A] = const(SeqNr.Min.pure[F].pure[F])
+
+  private[pekkoeffect] def adapter[F[_]: Async: ToFuture, A](
+    act: Act[F],
+    actor: PersistentActor,
+    stopped: F[Throwable],
+  ): Resource[F, Adapter[F, A]] =
+    adapter(act, Eventsourced(actor), stopped)
+
+  private[pekkoeffect] def adapter[F[_]: Async: ToFuture, A](
+    act: Act[F],
+    eventsourced: Eventsourced,
+    stopped: F[Throwable],
+  ): Resource[F, Adapter[F, A]] = {
+
+    class Main
+
+    def fail(ref: AtomicRef[Queue[Deferred[F, Either[Throwable, SeqNr]]]], error: F[Throwable]) =
+      ref
+        .getAndSet(Queue.empty)
+        .toList
+        .toNel
+        .foldMapM { queue =>
+          for {
+            error <- error
+            result <- queue.foldMapM(_.complete(error.asLeft).void)
+          } yield result
+        }
+
+    Resource
+      .make {
+        Sync[F].delay(AtomicRef(Queue.empty[Deferred[F, Either[Throwable, SeqNr]]]))
+      } { ref =>
+        Sync[F].defer(fail(ref, stopped))
+      }
+      .map { ref =>
+        new Main with Adapter[F, A] {
+
+          val value: Append[F, A] = new Main with Append[F, A] {
+
+            def apply(events: Events[A]) = {
+              val size = events.size
+              val eventsList = events.values.toList
+              for {
+                deferred <- Deferred[F, Either[Throwable, SeqNr]]
+                _ <- act {
+                  ref.update(_.enqueue(deferred))
+                  var left = size
+                  eventsList.foreach { events =>
+                    eventsourced.persistAllAsync(events.toList) { _ =>
+                      left = left - 1
+                      if (left <= 0) {
+                        val seqNr = eventsourced.lastSequenceNr
+                        ref
+                          .modify { queue =>
+                            queue.dequeueOption match {
+                              case Some((promise, queue)) => (queue, promise.some)
+                              case None => (Queue.empty, none)
+                            }
+                          }
+                          .foreach { deferred =>
+                            deferred
+                              .complete(seqNr.asRight)
+                              .toFuture
+                          }
+                      }
+                    }
+                  }
+                }
+              } yield deferred.get.rethrow
+            }
+          }
+
+          val onError: OnError[A] = { (error: Throwable, _: A, _: SeqNr) =>
+            fail(ref, error.pure[F]).toFuture
+            ()
+          }
+        }
+      }
+  }
+
+  implicit class AppendOps[F[_], A](val self: Append[F, A]) extends AnyVal {
+
+    def mapK[G[_]: Applicative](f: F ~> G): Append[G, A] = { events =>
+      f(self(events)).map(a => f(a))
+    }
+
+    def convert[B](
+      f: B => F[A],
+    )(implicit
+      F: Monad[F],
+    ): Append[F, B] = { events =>
+      for {
+        events <- events.traverse(f)
+        seqNr <- self(events)
+      } yield seqNr
+    }
+
+    def narrow[B <: A]: Append[F, B] = events => self(events)
+
+    def withLogging1(
+      log: Log[F],
+    )(implicit
+      F: FlatMap[F],
+      measureDuration: MeasureDuration[F],
+    ): Append[F, A] = events =>
+      for {
+        d <- MeasureDuration[F].start
+        r <- self(events)
+      } yield for {
+        r <- r
+        d <- d
+        _ <- log.debug(s"append ${ events.size } events in ${ d.toMillis }ms")
+      } yield r
+
+    def withFail(
+      fail: Fail[F],
+    )(implicit
+      F: MonadThrowable[F],
+    ): Append[F, A] = { events =>
+      fail.adapt(s"failed to append $events")(self(events))
+    }
+  }
+
+  private[pekkoeffect] trait Eventsourced {
+
+    def lastSequenceNr: SeqNr
+
+    def persistAllAsync[A](events: List[A])(handler: A => Unit): Unit
+  }
+
+  private[pekkoeffect] object Eventsourced {
+
+    def apply(actor: PersistentActor): Eventsourced = new Eventsourced {
+
+      def lastSequenceNr = actor.lastSequenceNr
+
+      def persistAllAsync[A](events: List[A])(f: A => Unit) = actor.persistAllAsync(events)(f)
+    }
+  }
+
+  private[pekkoeffect] trait OnError[A] {
+
+    def apply(cause: Throwable, event: A, seqNr: SeqNr): Unit
+  }
+
+  private[pekkoeffect] trait Adapter[F[_], A] {
+
+    def value: Append[F, A]
+
+    def onError: OnError[A]
+  }
+
+  object Adapter {
+
+    implicit class AdapterOps[F[_], A](val self: Adapter[F, A]) extends AnyVal {
+
+      def withFail(
+        fail: Fail[F],
+      )(implicit
+        F: MonadThrowable[F],
+      ): Adapter[F, A] = new Adapter[F, A] {
+
+        val value = self.value.withFail(fail)
+
+        def onError = self.onError
+      }
+    }
+  }
+}
