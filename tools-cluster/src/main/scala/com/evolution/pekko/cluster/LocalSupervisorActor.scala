@@ -1,6 +1,6 @@
-package com.evolution.cluster
+package com.evolution.pekko.cluster
 
-import org.apache.pekko.actor._
+import org.apache.pekko.actor.*
 import org.apache.pekko.cluster.sharding.ShardRegion
 import org.apache.pekko.cluster.sharding.ShardRegion.Passivate
 

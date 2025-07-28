@@ -1,4 +1,4 @@
-package com.evolution.cluster
+package com.evolution.pekko.cluster
 
 import cats.data.NonEmptyList as Nel
 import org.apache.pekko.actor.{ActorSystem, Address}

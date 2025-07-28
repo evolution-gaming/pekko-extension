@@ -1,7 +1,7 @@
-package com.evolution.cluster
+package com.evolution.pekko.cluster
 
 import org.apache.pekko.actor.{Actor, ActorLogging, ExtendedActorSystem, Extension, ExtensionId, Props}
-import org.apache.pekko.cluster.ClusterEvent._
+import org.apache.pekko.cluster.ClusterEvent.*
 import org.apache.pekko.cluster.{Cluster, Member}
 
 import scala.collection.immutable.Queue

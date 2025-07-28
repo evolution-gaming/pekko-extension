@@ -1,4 +1,4 @@
-package com.evolution.cluster
+package com.evolution.pekko.cluster
 
 import org.apache.pekko.actor.ActorSystem
 import org.apache.pekko.cluster.Cluster

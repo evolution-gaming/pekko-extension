@@ -1,4 +1,4 @@
-package com.evolution.cluster
+package com.evolution.pekko.cluster
 
 import org.apache.pekko.actor.Address
 import org.scalatest.funspec.AnyFunSpec
