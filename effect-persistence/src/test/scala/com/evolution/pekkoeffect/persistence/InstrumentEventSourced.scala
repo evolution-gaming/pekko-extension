@@ -2,6 +2,7 @@ package com.evolution.pekkoeffect.persistence
 
 import cats.effect.{Ref, Resource, Sync}
 import cats.syntax.all.*
+import com.evolution.pekko.effect.{Envelope, Receive}
 import com.evolution.pekkoeffect.*
 import org.apache.pekko.actor.ActorRef
 import org.apache.pekko.persistence.{Recovery, SnapshotSelectionCriteria}

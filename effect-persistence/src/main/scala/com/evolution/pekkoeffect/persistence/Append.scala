@@ -4,8 +4,9 @@ import cats.effect.kernel.Async
 import cats.effect.{Deferred, Resource, Sync}
 import cats.implicits.*
 import cats.{Applicative, FlatMap, Monad, ~>}
+import com.evolution.pekko.effect.Fail
 import com.evolution.pekkoeffect.util.AtomicRef
-import com.evolution.pekkoeffect.{Act, Fail}
+import com.evolution.pekkoeffect.{Act}
 import com.evolutiongaming.catshelper.CatsHelper.*
 import com.evolutiongaming.catshelper.{Log, MeasureDuration, MonadThrowable, ToFuture}
 import org.apache.pekko.persistence.*

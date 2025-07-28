@@ -4,8 +4,10 @@ import cats.effect.implicits.*
 import cats.effect.unsafe.implicits.global
 import cats.effect.{Async, IO, Resource}
 import cats.syntax.all.*
+import com.evolution.pekko.effect.{ActorEffect, ActorRefOf, Call, Receive, ReceiveOf}
+import com.evolution.pekko.effect.util.Terminated
 import com.evolution.pekkoeffect.*
-import com.evolution.pekkoeffect.IOSuite.*
+import com.evolution.pekko.effect.IOSuite.*
 import com.evolutiongaming.catshelper.{FromFuture, ToFuture}
 import org.apache.pekko.actor.ActorSystem
 import org.scalatest.funsuite.AsyncFunSuite

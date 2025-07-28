@@ -2,7 +2,7 @@ package org.apache.pekko.persistence
 
 import cats.effect.Sync
 import cats.syntax.all.*
-import com.evolution.pekkoeffect.ActorEffect
+import com.evolution.pekko.effect.ActorEffect
 import com.evolution.pekkoeffect.persistence.{EventSourcedId, SeqNr, SnapshotStore}
 import com.evolutiongaming.catshelper.{FromFuture, LogOf}
 

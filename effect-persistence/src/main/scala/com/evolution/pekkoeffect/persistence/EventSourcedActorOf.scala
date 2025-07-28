@@ -3,6 +3,7 @@ package com.evolution.pekkoeffect.persistence
 import cats.effect.implicits.effectResourceOps
 import cats.effect.{Async, Concurrent, Ref, Resource}
 import cats.syntax.all.*
+import com.evolution.pekko.effect.{ActorCtx, ActorOf, Envelope, Receive, ReceiveOf}
 import com.evolution.pekkoeffect.*
 import com.evolution.pekkoeffect.persistence.SeqNr
 import com.evolutiongaming.catshelper.{Log, LogOf, ToFuture}
@@ -43,7 +44,7 @@ object EventSourcedActorOf {
    * actor handles incoming commands and changes its state. Each state change is represented by
    * events, that are persisted and later used in recovery phase. Termination happens on actor's
    * shutdown (technically it happens as part of [[org.apache.pekko.actor.Actor.postStop]], check
-   * [[com.evolution.pekkoeffect.ActorOf]] for more details).
+   * [[ActorOf]] for more details).
    *
    * Persistence layer, used to store/recover events and snapshots, provided by
    * [[EventSourcedPersistence]].

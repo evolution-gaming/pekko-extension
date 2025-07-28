@@ -4,6 +4,7 @@ import cats.effect.implicits.effectResourceOps
 import cats.effect.kernel.Deferred
 import cats.effect.{Async, Ref, Resource, Sync}
 import cats.syntax.all.*
+import com.evolution.pekko.effect.{ActorEffect, ActorOf, ActorRefOf, Ask, Envelope, Receive, ReceiveOf}
 import com.evolution.pekkoeffect.*
 import com.evolutiongaming.catshelper.CatsHelper.*
 import com.evolutiongaming.catshelper.{FromFuture, ToFuture}

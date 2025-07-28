@@ -3,7 +3,8 @@ package com.evolution.pekkoeffect
 import cats.effect.unsafe.implicits.global
 import cats.effect.{Async, IO, Resource, Sync}
 import cats.syntax.all.*
-import com.evolution.pekkoeffect.IOSuite.*
+import com.evolution.pekko.effect.{ActorRefOf, AskFrom}
+import com.evolution.pekko.effect.IOSuite.*
 import com.evolution.pekkoeffect.testkit.Probe
 import com.evolutiongaming.catshelper.{FromFuture, ToFuture}
 import org.apache.pekko.actor.ActorRef

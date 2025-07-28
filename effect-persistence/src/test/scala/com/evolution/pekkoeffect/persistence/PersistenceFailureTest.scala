@@ -3,8 +3,8 @@ package com.evolution.pekkoeffect.persistence
 import cats.effect.unsafe.implicits.global
 import cats.effect.{IO, Resource}
 import cats.syntax.all.*
+import com.evolution.pekko.effect.{Envelope, Receive}
 import com.evolution.pekkoeffect.testkit.TestActorSystem
-import com.evolution.pekkoeffect.{Envelope, Receive}
 import com.evolutiongaming.catshelper.LogOf
 import org.apache.pekko.actor.Props
 import org.apache.pekko.persistence.journal.AsyncWriteJournal

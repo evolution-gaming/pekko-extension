@@ -2,7 +2,7 @@ package com.evolution.pekkoeffect.persistence
 
 import cats.effect.{Async, IO, Sync}
 import cats.syntax.all.*
-import com.evolution.pekkoeffect.IOSuite.*
+import com.evolution.pekko.effect.IOSuite.*
 import org.scalatest.funsuite.AsyncFunSuite
 import org.scalatest.matchers.should.Matchers
 

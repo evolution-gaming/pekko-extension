@@ -3,6 +3,7 @@ package com.evolution.pekkoeffect.persistence
 import cats.effect.implicits.effectResourceOps
 import cats.effect.{Async, Resource, Sync}
 import cats.syntax.all.*
+import com.evolution.pekko.effect.{ActorCtx, ActorError, ActorOf, Envelope, Fail, Receive}
 import com.evolution.pekkoeffect.*
 import com.evolution.pekkoeffect.util.AtomicRef
 import com.evolutiongaming.catshelper.CatsHelper.*

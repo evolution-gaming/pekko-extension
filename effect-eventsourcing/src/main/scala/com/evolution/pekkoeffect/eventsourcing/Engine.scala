@@ -5,10 +5,10 @@ import cats.effect.*
 import cats.effect.implicits.*
 import cats.syntax.all.*
 import cats.{Applicative, FlatMap, Functor, Monad}
+import com.evolution.pekko.effect.util.CloseOnError
 import com.evolution.pekkoeffect
 import com.evolution.pekkoeffect.eventsourcing.util.ResourceFromQueue
 import com.evolution.pekkoeffect.persistence.{Events, SeqNr}
-import com.evolution.pekkoeffect.util.CloseOnError
 import com.evolutiongaming.catshelper.CatsHelper.*
 import com.evolutiongaming.catshelper.{FromFuture, Runtime, SerParQueue, ToFuture}
 import org.apache.pekko.actor.ActorSystem

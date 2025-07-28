@@ -4,7 +4,8 @@ import cats.effect.kernel.Deferred
 import cats.effect.unsafe.implicits.global
 import cats.effect.{Async, IO}
 import cats.syntax.all.*
-import com.evolution.pekkoeffect.IOSuite.*
+import com.evolution.pekko.effect.EventStream
+import com.evolution.pekko.effect.IOSuite.*
 import com.evolutiongaming.catshelper.ToFuture
 import org.scalatest.funsuite.AsyncFunSuite
 import org.scalatest.matchers.should.Matchers

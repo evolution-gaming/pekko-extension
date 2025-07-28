@@ -3,7 +3,7 @@ package com.evolution.pekkoeffect.persistence
 import cats.Monad
 import cats.effect.Resource
 import cats.implicits.catsSyntaxApplicativeId
-import com.evolution.pekkoeffect.{Envelope, Receive}
+import com.evolution.pekko.effect.{Envelope, Receive}
 
 import scala.annotation.nowarn
 

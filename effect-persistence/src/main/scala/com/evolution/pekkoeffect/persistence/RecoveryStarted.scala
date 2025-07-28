@@ -4,7 +4,7 @@ import cats.Monad
 import cats.effect.Resource
 import cats.effect.implicits.effectResourceOps
 import cats.syntax.all.*
-import com.evolution.pekkoeffect.{Envelope, Receive}
+import com.evolution.pekko.effect.{Envelope, Receive}
 
 /**
  * Describes start of recovery phase

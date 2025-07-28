@@ -6,8 +6,9 @@ import cats.effect.kernel.Ref
 import cats.effect.syntax.all.*
 import cats.effect.unsafe.implicits.global
 import cats.syntax.all.*
+import com.evolution.pekko.effect.{ActorCtx, ActorEffect, ActorRefOf, Envelope, Receive, Reply}
 import com.evolution.pekkoeffect.*
-import com.evolution.pekkoeffect.IOSuite.*
+import com.evolution.pekko.effect.IOSuite.*
 import com.evolution.pekkoeffect.persistence.InstrumentEventSourced.Action
 import com.evolution.pekkoeffect.testkit.Probe
 import com.evolutiongaming.catshelper.CatsHelper.*

@@ -5,7 +5,7 @@ import cats.effect.unsafe.implicits.global
 import cats.effect.{Async, IO, Ref, Sync}
 import cats.syntax.all.*
 import com.evolution.pekkoeffect.*
-import com.evolution.pekkoeffect.IOSuite.*
+import com.evolution.pekko.effect.IOSuite.*
 import com.evolutiongaming.catshelper.CatsHelper.*
 import com.evolutiongaming.catshelper.{ToFuture, ToTry}
 import org.scalatest.funsuite.AsyncFunSuite

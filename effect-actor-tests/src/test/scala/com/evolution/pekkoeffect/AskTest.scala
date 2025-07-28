@@ -3,7 +3,8 @@ package com.evolution.pekkoeffect
 import cats.arrow.FunctionK
 import cats.effect.{Async, IO, Sync}
 import cats.syntax.all.*
-import com.evolution.pekkoeffect.IOSuite.*
+import com.evolution.pekko.effect.{ActorRefOf, Ask}
+import com.evolution.pekko.effect.IOSuite.*
 import com.evolutiongaming.catshelper.FromFuture
 import org.apache.pekko.actor.ActorSystem
 import org.apache.pekko.testkit.TestActors
