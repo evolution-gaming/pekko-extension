@@ -1,4 +1,4 @@
-package com.evolution.pekkoeffect.cluster.sharding
+package com.evolution.pekko.effect.cluster.sharding
 
 import cats.effect.unsafe.implicits.global
 import cats.effect.{IO, Resource}
