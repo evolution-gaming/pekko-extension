@@ -1,4 +1,4 @@
-package com.evolution.pekkoeffect.cluster
+package com.evolution.pekko.effect.cluster
 
 import cats.{Order, Show}
 import pureconfig.ConfigReader
