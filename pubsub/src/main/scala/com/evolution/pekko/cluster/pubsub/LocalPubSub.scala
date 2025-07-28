@@ -1,4 +1,4 @@
-package com.evolution.cluster.pubsub
+package com.evolution.pekko.cluster.pubsub
 
 import org.apache.pekko.actor._
 import org.apache.pekko.cluster.pubsub.{DistributedPubSubMediator => Mediator}

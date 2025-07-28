@@ -1,13 +1,13 @@
-package com.evolution.cluster.pubsub
+package com.evolution.pekko.cluster.pubsub
 
-import LocalPubSub._
-import org.apache.pekko.cluster.pubsub.{DistributedPubSubMediator => Mediator}
+import com.evolution.pekko.cluster.pubsub.LocalPubSub.*
+import org.apache.pekko.cluster.pubsub.DistributedPubSubMediator as Mediator
 import org.apache.pekko.testkit.{TestActorRef, TestProbe}
 import org.scalatest.concurrent.Eventually
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 
-import scala.concurrent.duration._
+import scala.concurrent.duration.*
 
 class LocalPubSubSpec extends AnyFlatSpec with ActorSpec with Matchers with Eventually {
 

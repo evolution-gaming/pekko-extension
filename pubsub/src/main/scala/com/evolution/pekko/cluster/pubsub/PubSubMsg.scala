@@ -1,4 +1,4 @@
-package com.evolution.cluster.pubsub
+package com.evolution.pekko.cluster.pubsub
 
 import com.evolution.serialization.SerializedMsg
 

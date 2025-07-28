@@ -1,10 +1,9 @@
-package com.evolution.cluster.pubsub
+package com.evolution.pekko.cluster.pubsub
 
-import IOSuite._
-import PubSub.OnMsg
 import cats.Parallel
-import cats.effect.{Async, IO, Ref, Resource, Sync}
-import cats.implicits._
+import cats.effect.*
+import cats.implicits.*
+import com.evolution.pekko.cluster.pubsub.IOSuite.*
 import org.apache.pekko.actor.{ActorPath, ActorSystem}
 import org.apache.pekko.testkit.TestActors
 import org.scalatest.funsuite.AsyncFunSuite

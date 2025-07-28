@@ -1,4 +1,4 @@
-package com.evolution.cluster.pubsub
+package com.evolution.pekko.cluster.pubsub
 
 import org.apache.pekko.actor.ActorSystem
 import org.apache.pekko.testkit.{DefaultTimeout, ImplicitSender, TestKit}

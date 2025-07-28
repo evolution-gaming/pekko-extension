@@ -1,12 +1,12 @@
-package com.evolution.cluster.pubsub
+package com.evolution.pekko.cluster.pubsub
 
-import PubSub.OnMsg
 import cats.Parallel
-import cats.data.{NonEmptyList => Nel}
+import cats.data.NonEmptyList as Nel
 import cats.effect.{Concurrent, MonadCancelThrow, Resource}
-import cats.syntax.all._
+import cats.syntax.all.*
+import com.evolution.pekko.cluster.pubsub.PubSub.OnMsg
 import com.evolution.scache.SerialMap
-import com.evolutiongaming.catshelper.ParallelHelper._
+import com.evolutiongaming.catshelper.ParallelHelper.*
 import com.evolutiongaming.catshelper.Runtime
 
 trait OptimiseSubscribe[F[_]] {

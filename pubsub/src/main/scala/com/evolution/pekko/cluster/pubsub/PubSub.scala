@@ -1,25 +1,25 @@
-package com.evolution.cluster.pubsub
+package com.evolution.pekko.cluster.pubsub
 
 import cats.effect.{Resource, Sync}
-import cats.syntax.all._
+import cats.syntax.all.*
 import cats.{Applicative, Id, Monad, ~>}
 import com.codahale.metrics.MetricRegistry
 import com.evolution.serialization.ToBytesAble
-import com.evolutiongaming.catshelper.CatsHelper._
-import com.evolutiongaming.catshelper.{FromFuture, Log, LogOf, ToFuture, ToTry}
+import com.evolutiongaming.catshelper.CatsHelper.*
+import com.evolutiongaming.catshelper.*
 import com.evolutiongaming.metrics.MetricName
 import org.apache.pekko.actor.{Actor, ActorPath, ActorRef, ActorRefFactory, ActorSystem, Props}
 import org.apache.pekko.cluster.Cluster
-import org.apache.pekko.cluster.pubsub.{DistributedPubSubMediator => Mediator, DistributedPubSubMediatorSerializing}
-import org.apache.pekko.pattern._
+import org.apache.pekko.cluster.pubsub.{DistributedPubSubMediatorSerializing, DistributedPubSubMediator as Mediator}
+import org.apache.pekko.pattern.*
 import org.apache.pekko.util.Timeout
 
 import scala.concurrent.Future
-import scala.concurrent.duration._
+import scala.concurrent.duration.*
 import scala.reflect.ClassTag
 
 trait PubSub[F[_]] {
-  import PubSub._
+  import PubSub.*
 
   def publish[A: Topic: ToBytes](
     msg: A,

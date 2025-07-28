@@ -1,11 +1,11 @@
-package com.evolution.cluster.pubsub
+package com.evolution.pekko.cluster.pubsub
 
 import cats.effect.IO
 import cats.effect.unsafe.implicits.global
 import com.evolution.serialization.ToBytesAble
-import com.evolutiongaming.catshelper.CatsHelper._
+import com.evolutiongaming.catshelper.CatsHelper.*
 import com.evolutiongaming.catshelper.LogOf
-import org.apache.pekko.cluster.pubsub.{DistributedPubSubMediator => Mediator}
+import org.apache.pekko.cluster.pubsub.DistributedPubSubMediator as Mediator
 import org.apache.pekko.testkit.TestProbe
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
