@@ -6,6 +6,7 @@ import cats.{Applicative, FlatMap, Monad, ~>}
 import com.evolution.pekko.effect.actor.Act
 import com.evolution.pekko.effect.actor.Fail
 import com.evolution.pekko.effect.actor.util.AtomicRef
+import com.evolution.pekko.effect.persistence.api.{Events, SeqNr}
 import com.evolutiongaming.catshelper.CatsHelper.*
 import com.evolutiongaming.catshelper.{Log, MeasureDuration, MonadThrowable, ToFuture}
 import org.apache.pekko.persistence.*

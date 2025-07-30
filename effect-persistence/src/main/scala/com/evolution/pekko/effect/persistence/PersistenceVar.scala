@@ -4,7 +4,7 @@ import cats.effect.{Async, Resource, Sync}
 import cats.syntax.all.*
 import com.evolution.pekko.effect.actor.ActorVar.Directive
 import com.evolution.pekko.effect.actor.{Act, ActorVar, Envelope, Fail, Receive}
-import com.evolution.pekko.effect.persistence.SeqNr
+import com.evolution.pekko.effect.persistence.api.SeqNr
 import com.evolutiongaming.catshelper.ToFuture
 import org.apache.pekko.actor.{ActorContext, ActorRef}
 

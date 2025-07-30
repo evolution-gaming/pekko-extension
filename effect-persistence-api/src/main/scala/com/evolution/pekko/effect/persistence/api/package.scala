@@ -1,6 +1,6 @@
-package com.evolution.pekko.effect
+package com.evolution.pekko.effect.persistence
 
-package object persistence {
+package object api {
 
   type SeqNr = Long
 

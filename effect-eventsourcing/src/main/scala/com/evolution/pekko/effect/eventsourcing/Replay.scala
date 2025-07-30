@@ -3,7 +3,7 @@ package com.evolution.pekko.effect.eventsourcing
 import cats.Monad
 import cats.arrow.FunctionK
 import cats.syntax.all.*
-import com.evolution.pekko.effect.persistence.SeqNr
+import com.evolution.pekko.effect.persistence.api.SeqNr
 
 /**
  * @see

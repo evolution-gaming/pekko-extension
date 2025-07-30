@@ -6,6 +6,7 @@ import cats.effect.{Async, IO, Ref, Sync}
 import cats.syntax.all.*
 import com.evolution.pekko.effect.actor.*
 import com.evolution.pekko.effect.actor.IOSuite.*
+import com.evolution.pekko.effect.persistence.api.{Events, SeqNr}
 import com.evolutiongaming.catshelper.CatsHelper.*
 import com.evolutiongaming.catshelper.{ToFuture, ToTry}
 import org.scalatest.funsuite.AsyncFunSuite

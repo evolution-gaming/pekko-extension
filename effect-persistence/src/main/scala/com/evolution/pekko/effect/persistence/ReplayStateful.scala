@@ -2,6 +2,7 @@ package com.evolution.pekko.effect.persistence
 
 import cats.effect.{Ref, Sync}
 import cats.syntax.all.*
+import com.evolution.pekko.effect.persistence.api.SeqNr
 
 trait ReplayStateful[F[_], S, E] {
 

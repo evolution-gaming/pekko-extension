@@ -1,4 +1,4 @@
-package com.evolution.pekko.effect.persistence
+package com.evolution.pekko.effect.persistence.api
 
 import cats.data.NonEmptyList as Nel
 import cats.syntax.all.*

@@ -5,6 +5,7 @@ import cats.effect.Resource
 import cats.effect.implicits.effectResourceOps
 import cats.syntax.all.*
 import com.evolution.pekko.effect.actor.{Envelope, Receive}
+import com.evolution.pekko.effect.persistence.api.SeqNr
 
 /**
  * Describes start of recovery phase

@@ -8,7 +8,7 @@ import cats.{Applicative, FlatMap, Functor, Monad}
 import com.evolution.pekko.effect
 import com.evolution.pekko.effect.actor.util.CloseOnError
 import com.evolution.pekko.effect.eventsourcing.util.ResourceFromQueue
-import com.evolution.pekko.effect.persistence.{Events, SeqNr}
+import com.evolution.pekko.effect.persistence.api.{Events, SeqNr}
 import com.evolutiongaming.catshelper.CatsHelper.*
 import com.evolutiongaming.catshelper.{FromFuture, Runtime, SerParQueue, ToFuture}
 import org.apache.pekko.actor.ActorSystem

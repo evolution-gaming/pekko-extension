@@ -3,6 +3,7 @@ package com.evolution.pekko.effect.persistence
 import cats.arrow.FunctionK
 import cats.syntax.all.*
 import cats.{Applicative, FlatMap}
+import com.evolution.pekko.effect.persistence.api.SeqNr
 
 /**
  * Used during recovery to replay events

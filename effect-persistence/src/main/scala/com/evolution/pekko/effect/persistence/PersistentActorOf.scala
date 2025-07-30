@@ -5,7 +5,7 @@ import cats.effect.{Async, Resource, Sync}
 import cats.syntax.all.*
 import com.evolution.pekko.effect.actor.*
 import com.evolution.pekko.effect.actor.util.AtomicRef
-import com.evolution.pekko.effect.persistence.{RecoveryStarted, SeqNr, SnapshotMetadata, SnapshotOffer, Snapshotter}
+import com.evolution.pekko.effect.persistence.api.SeqNr
 import com.evolutiongaming.catshelper.CatsHelper.*
 import com.evolutiongaming.catshelper.{FromFuture, Memoize, ToFuture, ToTry}
 import org.apache.pekko.actor.ReceiveTimeout

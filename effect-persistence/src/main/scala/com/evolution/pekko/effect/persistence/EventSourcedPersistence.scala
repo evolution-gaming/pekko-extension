@@ -1,6 +1,7 @@
 package com.evolution.pekko.effect.persistence
 
 import cats.effect.Async
+import com.evolution.pekko.effect.persistence.api.{EventStore, SnapshotStore}
 import com.evolutiongaming.catshelper.{FromFuture, LogOf, ToTry}
 import org.apache.pekko.actor.ActorSystem
 import org.apache.pekko.persistence.{EventStoreInterop, SnapshotStoreInterop}

@@ -9,7 +9,7 @@ import com.evolution.pekko.effect.actor.*
 import com.evolution.pekko.effect.actor.IOSuite.*
 import com.evolution.pekko.effect.actor.tests.ActorSuite
 import com.evolution.pekko.effect.persistence.InstrumentEventSourced.Action
-import com.evolution.pekko.effect.persistence.{Events, SeqNr}
+import com.evolution.pekko.effect.persistence.api.{EventSourcedId, Events, SeqNr}
 import com.evolution.pekko.effect.testkit.Probe
 import com.evolutiongaming.catshelper.CatsHelper.*
 import com.evolutiongaming.catshelper.{FromFuture, LogOf, ToFuture, ToTry}

@@ -7,7 +7,7 @@ import com.evolution.pekko.effect.actor.ActorVar.Directive
 import com.evolution.pekko.effect.actor.Fail.implicits.*
 import com.evolution.pekko.effect.actor.Releasable.implicits.*
 import com.evolution.pekko.effect.actor.{Envelope, Fail, Receive, Releasable}
-import com.evolution.pekko.effect.persistence.SeqNr
+import com.evolution.pekko.effect.persistence.api.SeqNr
 import org.apache.pekko.actor.ActorRef
 
 private[effect] trait Persistence[F[_], S, E, C] {

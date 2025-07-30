@@ -4,8 +4,7 @@ import cats.effect.syntax.all.*
 import cats.effect.{Async, Sync}
 import cats.syntax.all.*
 import com.evolution.pekko.effect.actor.ActorEffect
-import com.evolution.pekko.effect.persistence.{EventSourcedId, EventStore}
-import com.evolution.pekko.effect.persistence.{Events, SeqNr}
+import com.evolution.pekko.effect.persistence.api.{EventSourcedId, EventStore, Events, SeqNr}
 import com.evolutiongaming.catshelper.{FromFuture, LogOf, ToTry}
 import com.evolutiongaming.sstream
 

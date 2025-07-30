@@ -5,7 +5,8 @@ import cats.effect.{Clock, Concurrent, Ref}
 import cats.syntax.all.*
 import cats.{Applicative, Order}
 import com.evolution.pekko.effect.actor.ActorStoppedError
-import com.evolution.pekko.effect.persistence.{SeqNr, SnapshotMetadata, Snapshotter}
+import com.evolution.pekko.effect.persistence.api.SeqNr
+import com.evolution.pekko.effect.persistence.{SnapshotMetadata, Snapshotter}
 import com.evolutiongaming.catshelper.ClockHelper.*
 import com.evolutiongaming.catshelper.Log
 import org.apache.pekko.persistence.SnapshotSelectionCriteria

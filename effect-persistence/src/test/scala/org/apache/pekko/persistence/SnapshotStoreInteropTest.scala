@@ -3,8 +3,7 @@ package org.apache.pekko.persistence
 import cats.effect.IO
 import cats.effect.unsafe.implicits.global
 import cats.syntax.all.*
-import com.evolution.pekko.effect.persistence.SeqNr
-import com.evolution.pekko.effect.persistence.{EventSourcedId, SnapshotStore}
+import com.evolution.pekko.effect.persistence.api.{EventSourcedId, SeqNr, SnapshotStore}
 import com.evolution.pekko.effect.testkit.TestActorSystem
 import com.evolutiongaming.catshelper.LogOf
 import org.apache.pekko.pattern.AskTimeoutException

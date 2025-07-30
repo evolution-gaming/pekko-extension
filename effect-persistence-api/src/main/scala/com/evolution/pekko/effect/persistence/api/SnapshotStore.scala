@@ -1,6 +1,4 @@
-package com.evolution.pekko.effect.persistence
-
-import com.evolution.pekko.effect.persistence.SeqNr
+package com.evolution.pekko.effect.persistence.api
 
 import java.time.Instant
 

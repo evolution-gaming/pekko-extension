@@ -4,8 +4,7 @@ import cats.effect.unsafe.implicits.global
 import cats.effect.{Deferred, IO}
 import cats.syntax.all.*
 import com.evolution.pekko.effect.actor.util.AtomicRef
-import com.evolution.pekko.effect.persistence.{EventSourcedId, EventStore}
-import com.evolution.pekko.effect.persistence.{Events, SeqNr}
+import com.evolution.pekko.effect.persistence.api.{EventSourcedId, EventStore, Events, SeqNr}
 import com.evolution.pekko.effect.testkit.TestActorSystem
 import com.evolutiongaming.catshelper.LogOf
 import org.apache.pekko.persistence.journal.AsyncWriteJournal

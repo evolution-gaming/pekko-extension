@@ -3,7 +3,7 @@ package com.evolution.pekko.effect.eventsourcing
 import cats.syntax.all.*
 import cats.{Applicative, FlatMap, Functor, ~>}
 import com.evolution.pekko.effect.persistence
-import com.evolution.pekko.effect.persistence.SeqNr
+import com.evolution.pekko.effect.persistence.api.SeqNr
 import com.evolutiongaming.catshelper.{Log, MeasureDuration}
 
 trait Journaller[F[_]] {
