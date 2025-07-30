@@ -1,7 +1,6 @@
 package com.evolution.pekko.conhub
 
 import cats.data.NonEmptyList as Nel
-import com.evolution.pekko.conhub.RemoteEvent as R
 import com.evolution.pekko.conhub.transport.{ReceiveMsg, SendMsg}
 import org.apache.pekko.actor.{ActorRefFactory, ActorSystem, Address}
 
@@ -32,27 +31,27 @@ object SendEvent {
       def updated(id: Id, con: A, version: Version): Unit = {
         val idStr = idSerializer.to(id)
         val conBytes = conSerializer.to(con)
-        val value = R.Value(idStr, conBytes, version)
-        val updated = R.Event.Updated(value)
+        val value = RemoteEvent.Value(idStr, conBytes, version)
+        val updated = RemoteEvent.Event.Updated(value)
         send(updated)
       }
 
       def disconnected(id: Id, timeout: FiniteDuration, version: Version): Unit = {
         val idStr = idSerializer.to(id)
-        val disconnected = R.Event.Disconnected(idStr, timeout, version)
+        val disconnected = RemoteEvent.Event.Disconnected(idStr, timeout, version)
         send(disconnected)
       }
 
       def removed(id: Id, version: Version): Unit = {
-        val removed = R.Event.Removed(idSerializer.to(id), version)
+        val removed = RemoteEvent.Event.Removed(idSerializer.to(id), version)
         send(removed)
       }
 
       def sync(id: Id, con: A, version: Version): Unit = {
         val idStr = idSerializer.to(id)
         val conBytes = conSerializer.to(con)
-        val value = R.Value(idStr, conBytes, version)
-        val sync = R.Event.Sync(Nel.one(value))
+        val value = RemoteEvent.Value(idStr, conBytes, version)
+        val sync = RemoteEvent.Event.Sync(Nel.one(value))
         send(sync)
       }
     }
@@ -158,7 +157,7 @@ object ReceiveEvent {
           case RemoteEvent.Event.Sync(values) => onSync(values)
           case event: RemoteEvent.Event.Disconnected => onDisconnected(event)
           case event: RemoteEvent.Event.Removed => onRemoved(event)
-          case R.Event.ConHubJoined =>
+          case RemoteEvent.Event.ConHubJoined =>
         }
       }
     }

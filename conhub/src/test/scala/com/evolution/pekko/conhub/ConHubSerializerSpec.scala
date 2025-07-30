@@ -1,7 +1,6 @@
 package com.evolution.pekko.conhub
 
 import cats.data.NonEmptyList as Nel
-import com.evolution.pekko.conhub.RemoteEvent as R
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
 import scodec.bits.ByteVector
@@ -17,25 +16,25 @@ class ConHubSerializerSpec extends AnyFunSuite with Matchers {
 
   test("toBinary & fromBinary for Event.Updated") {
     val value = "value".encodeStr
-    val expected = R.Event.Updated(R.Value("id", value, version))
+    val expected = RemoteEvent.Event.Updated(RemoteEvent.Value("id", value, version))
     val actual = toAndFromBinaryEvent(expected)
     actual.value.bytes.decodeStr shouldEqual "value"
     actual.copy(value = actual.value.copy(bytes = value)) shouldEqual expected
   }
 
   test("toBinary & fromBinary for Event.Removed") {
-    val expected = R.Event.Removed("id", version)
+    val expected = RemoteEvent.Event.Removed("id", version)
     toAndFromBinaryEvent(expected) shouldEqual expected
   }
 
   test("toBinary & fromBinary for Event.Disconnected") {
-    val expected = R.Event.Disconnected("id", 3.seconds, version)
+    val expected = RemoteEvent.Event.Disconnected("id", 3.seconds, version)
     toAndFromBinaryEvent(expected) shouldEqual expected
   }
 
   test("toBinary & fromBinary for Event.Sync") {
     val values = Nel.of(1, 2, 3) map { x => x.toString }
-    val expected = R.Event.Sync(values map { value => R.Value(value, value.encodeStr, version) })
+    val expected = RemoteEvent.Event.Sync(values map { value => RemoteEvent.Value(value, value.encodeStr, version) })
     val actual = toAndFromBinaryEvent(expected)
     actual.values.toList.foreach { value =>
       value.bytes.decodeStr shouldEqual value.id
@@ -44,7 +43,7 @@ class ConHubSerializerSpec extends AnyFunSuite with Matchers {
   }
 
   test("toBinary & fromBinary for Event.Joined") {
-    toAndFromBinaryEvent(R.Event.ConHubJoined) shouldEqual R.Event.ConHubJoined
+    toAndFromBinaryEvent(RemoteEvent.Event.ConHubJoined) shouldEqual RemoteEvent.Event.ConHubJoined
   }
 
   test("toBinary & fromBinary for Msgs ") {
@@ -54,8 +53,8 @@ class ConHubSerializerSpec extends AnyFunSuite with Matchers {
     actual.values.map(_.decodeStr) shouldEqual msgs
   }
 
-  private def toAndFromBinaryEvent[A <: R.Event](event: A): A = {
-    val remoteEvent = R(event)
+  private def toAndFromBinaryEvent[A <: RemoteEvent.Event](event: A): A = {
+    val remoteEvent = RemoteEvent(event)
     val deserialized = toAndFromBinary(remoteEvent)
     deserialized.event.asInstanceOf[A]
   }
