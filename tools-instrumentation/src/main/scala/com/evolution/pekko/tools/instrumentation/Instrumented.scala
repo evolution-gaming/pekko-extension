@@ -1,7 +1,7 @@
 package com.evolution.pekko.tools.instrumentation
 
-import com.evolution.pekko.tools.util.{BlockingTracker, ExecutionThreadTracker}
 import com.evolution.pekko.tools.util.BlockingTracker.Surround
+import com.evolution.pekko.tools.util.{BlockingTracker, ExecutionThreadTracker}
 import io.prometheus.client.{Collector, CollectorRegistry, Gauge, Summary}
 import org.apache.pekko.dispatch.OverridePekkoRunnable
 import org.slf4j.MDC
