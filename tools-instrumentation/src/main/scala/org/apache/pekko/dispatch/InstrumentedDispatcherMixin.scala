@@ -1,6 +1,6 @@
 package org.apache.pekko.dispatch
 
-import com.evolution.pekko.util.dispatchers.{Instrumented, InstrumentedConfig}
+import com.evolution.pekko.tools.instrumentation.{Instrumented, InstrumentedConfig}
 import org.apache.pekko.event.Logging.Error
 
 import java.util.concurrent.RejectedExecutionException

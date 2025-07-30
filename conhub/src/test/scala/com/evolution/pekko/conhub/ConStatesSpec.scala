@@ -3,7 +3,7 @@ package com.evolution.pekko.conhub
 import com.evolution.pekko.conhub.ConHubSpecHelper.*
 import com.evolution.pekko.conhub.ConStates.{Ctx, Diff}
 import com.evolution.pekko.conhub.transport.SendMsg
-import com.evolution.pekko.test.ActorSpec
+import com.evolution.pekko.tools.test.ActorSpec
 import com.evolutiongaming.concurrent.sequentially.{SequentialMap, Sequentially}
 import org.apache.pekko.actor.{ActorRef, Address}
 import org.apache.pekko.testkit.TestProbe
