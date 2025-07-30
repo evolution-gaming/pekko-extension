@@ -4,7 +4,7 @@ import cats.effect.syntax.all.*
 import cats.effect.{Clock, Concurrent, Ref}
 import cats.syntax.all.*
 import cats.{Applicative, Order}
-import com.evolution.pekko.effect.ActorStoppedError
+import com.evolution.pekko.effect.actor.ActorStoppedError
 import com.evolution.pekko.effect.persistence.{SeqNr, SnapshotMetadata, Snapshotter}
 import com.evolutiongaming.catshelper.ClockHelper.*
 import com.evolutiongaming.catshelper.Log

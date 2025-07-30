@@ -1,7 +1,7 @@
 package com.evolution.pekko.effect.persistence
 
 import cats.{Applicative, FlatMap, Monad, ~>}
-import com.evolution.pekko.effect.Fail
+import com.evolution.pekko.effect.actor.Fail
 import com.evolutiongaming.catshelper.{Log, MeasureDuration, MonadThrowable}
 
 /**

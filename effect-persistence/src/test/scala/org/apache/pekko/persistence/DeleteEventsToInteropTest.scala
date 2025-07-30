@@ -4,10 +4,11 @@ import cats.effect.implicits.effectResourceOps
 import cats.effect.unsafe.implicits.global
 import cats.effect.{Async, Deferred, IO, Sync}
 import cats.syntax.all.*
-import com.evolution.pekko.effect.IOSuite.*
+import com.evolution.pekko.effect.actor.ActorRefOf
+import com.evolution.pekko.effect.actor.IOSuite.*
+import com.evolution.pekko.effect.actor.tests.ActorSuite
 import com.evolution.pekko.effect.persistence.DeleteEventsTo
 import com.evolution.pekko.effect.testkit.Probe
-import com.evolution.pekko.effect.{ActorRefOf, ActorSuite}
 import com.evolutiongaming.catshelper.CatsHelper.*
 import com.evolutiongaming.catshelper.{FromFuture, ToFuture}
 import org.apache.pekko.actor.{Actor, ActorRef, ActorSystem, Props}

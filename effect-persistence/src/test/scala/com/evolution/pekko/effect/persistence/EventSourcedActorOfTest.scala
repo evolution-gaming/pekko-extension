@@ -5,8 +5,9 @@ import cats.effect.*
 import cats.effect.syntax.all.*
 import cats.effect.unsafe.implicits.global
 import cats.syntax.all.*
-import com.evolution.pekko.effect.*
-import com.evolution.pekko.effect.IOSuite.*
+import com.evolution.pekko.effect.actor.*
+import com.evolution.pekko.effect.actor.IOSuite.*
+import com.evolution.pekko.effect.actor.tests.ActorSuite
 import com.evolution.pekko.effect.persistence.InstrumentEventSourced.Action
 import com.evolution.pekko.effect.persistence.{Events, SeqNr}
 import com.evolution.pekko.effect.testkit.Probe

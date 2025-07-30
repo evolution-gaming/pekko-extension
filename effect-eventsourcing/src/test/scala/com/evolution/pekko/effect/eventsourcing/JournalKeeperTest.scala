@@ -3,7 +3,7 @@ package com.evolution.pekko.effect.eventsourcing
 import cats.Monad
 import cats.effect.*
 import cats.syntax.all.*
-import com.evolution.pekko.effect.IOSuite.*
+import com.evolution.pekko.effect.actor.IOSuite.*
 import com.evolution.pekko.effect.persistence.{SeqNr, SnapshotMetadata, Snapshotter}
 import com.evolutiongaming.catshelper.ClockHelper.*
 import com.evolutiongaming.catshelper.Log

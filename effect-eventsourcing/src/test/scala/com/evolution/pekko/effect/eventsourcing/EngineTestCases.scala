@@ -5,7 +5,7 @@ import cats.effect.Ref
 import cats.effect.implicits.effectResourceOps
 import cats.effect.unsafe.implicits.global
 import cats.syntax.all.*
-import com.evolution.pekko.effect.IOSuite.*
+import com.evolution.pekko.effect.actor.IOSuite.*
 import com.evolution.pekko.effect.persistence.{Events, SeqNr}
 import com.evolutiongaming.catshelper.{FromFuture, ToFuture}
 import com.evolutiongaming.retry.{Retry, Strategy}

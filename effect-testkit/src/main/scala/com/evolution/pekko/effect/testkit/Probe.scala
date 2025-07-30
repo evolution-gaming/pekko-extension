@@ -3,7 +3,7 @@ package com.evolution.pekko.effect.testkit
 import cats.effect.implicits.effectResourceOps
 import cats.effect.{Async, Deferred, Ref, Resource, Sync}
 import cats.syntax.all.*
-import com.evolution.pekko.effect.{ActorEffect, ActorOf, ActorRefOf, Ask, Envelope, Receive, ReceiveOf}
+import com.evolution.pekko.effect.actor.{ActorEffect, ActorOf, ActorRefOf, Ask, Envelope, Receive, ReceiveOf}
 import com.evolutiongaming.catshelper.CatsHelper.*
 import com.evolutiongaming.catshelper.{FromFuture, ToFuture}
 import org.apache.pekko.actor.{ActorRef, Props}

@@ -2,10 +2,11 @@ package com.evolution.pekko.effect.cluster.sharding
 
 import cats.effect.IO
 import cats.effect.unsafe.implicits.global
-import com.evolution.pekko.effect.IOSuite.*
+import com.evolution.pekko.effect.actor.IOSuite.*
+import com.evolution.pekko.effect.actor.tests.ActorSuite
+import com.evolution.pekko.effect.actor.{ActorEffect, ActorRefOf}
 import com.evolution.pekko.effect.persistence.TypeName
 import com.evolution.pekko.effect.testkit.Probe
-import com.evolution.pekko.effect.{ActorEffect, ActorRefOf, ActorSuite}
 import org.apache.pekko.actor.{Actor, ActorRef, Props}
 import org.apache.pekko.cluster.sharding.ShardCoordinator.ShardAllocationStrategy
 import org.apache.pekko.cluster.sharding.ShardRegion.{ShardId, ShardState}

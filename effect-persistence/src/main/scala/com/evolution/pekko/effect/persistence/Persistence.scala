@@ -3,11 +3,11 @@ package com.evolution.pekko.effect.persistence
 import cats.effect.implicits.effectResourceOps
 import cats.effect.{Ref, Resource, Sync}
 import cats.syntax.all.*
-import com.evolution.pekko.effect.ActorVar.Directive
-import com.evolution.pekko.effect.Fail.implicits.*
-import com.evolution.pekko.effect.Releasable.implicits.*
+import com.evolution.pekko.effect.actor.ActorVar.Directive
+import com.evolution.pekko.effect.actor.Fail.implicits.*
+import com.evolution.pekko.effect.actor.Releasable.implicits.*
+import com.evolution.pekko.effect.actor.{Envelope, Fail, Receive, Releasable}
 import com.evolution.pekko.effect.persistence.SeqNr
-import com.evolution.pekko.effect.{Envelope, Fail, Receive, Releasable}
 import org.apache.pekko.actor.ActorRef
 
 private[effect] trait Persistence[F[_], S, E, C] {

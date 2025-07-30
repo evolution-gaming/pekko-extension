@@ -3,10 +3,9 @@ package com.evolution.pekko.effect.persistence
 import cats.effect.implicits.effectResourceOps
 import cats.effect.{Async, Resource, Sync}
 import cats.syntax.all.*
-import com.evolution.pekko.effect.*
+import com.evolution.pekko.effect.actor.*
+import com.evolution.pekko.effect.actor.util.AtomicRef
 import com.evolution.pekko.effect.persistence.{RecoveryStarted, SeqNr, SnapshotMetadata, SnapshotOffer, Snapshotter}
-import com.evolution.pekko.effect.util.AtomicRef
-import com.evolution.pekko.effect.{ActorCtx, ActorError, ActorOf, Envelope, Fail, Receive}
 import com.evolutiongaming.catshelper.CatsHelper.*
 import com.evolutiongaming.catshelper.{FromFuture, Memoize, ToFuture, ToTry}
 import org.apache.pekko.actor.ReceiveTimeout

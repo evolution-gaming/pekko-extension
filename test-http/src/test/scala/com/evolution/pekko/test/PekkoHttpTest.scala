@@ -1,6 +1,6 @@
 package com.evolution.pekko.test
 
-import com.evolution.pekko.test.PekkoHttpSuite.*
+import com.evolution.pekko.test.http.PekkoHttpSuite.*
 import org.scalatest.Assertion
 import org.scalatest.funsuite.AsyncFunSuite
 import org.scalatest.matchers.should.Matchers

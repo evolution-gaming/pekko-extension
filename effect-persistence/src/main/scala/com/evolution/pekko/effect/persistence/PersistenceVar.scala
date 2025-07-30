@@ -2,9 +2,9 @@ package com.evolution.pekko.effect.persistence
 
 import cats.effect.{Async, Resource, Sync}
 import cats.syntax.all.*
-import com.evolution.pekko.effect.ActorVar.Directive
+import com.evolution.pekko.effect.actor.ActorVar.Directive
+import com.evolution.pekko.effect.actor.{Act, ActorVar, Envelope, Fail, Receive}
 import com.evolution.pekko.effect.persistence.SeqNr
-import com.evolution.pekko.effect.{Act, ActorVar, Envelope, Fail, Receive}
 import com.evolutiongaming.catshelper.ToFuture
 import org.apache.pekko.actor.{ActorContext, ActorRef}
 

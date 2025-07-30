@@ -192,7 +192,9 @@ lazy val toolsTest = module("tools-test")
   )
 
 lazy val toolsUtil = module("tools-util")
-  .dependsOn(toolsTest % "test->compile")
+  .dependsOn(
+    toolsTest % "test->compile",
+  )
   .settings(commonSettings)
   .settings(
     libraryDependencies ++= Seq(

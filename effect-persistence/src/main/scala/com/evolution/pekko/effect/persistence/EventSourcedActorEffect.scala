@@ -1,7 +1,7 @@
 package com.evolution.pekko.effect.persistence
 
 import cats.effect.{Async, Resource}
-import com.evolution.pekko.effect.{ActorEffect, ActorRefOf}
+import com.evolution.pekko.effect.actor.{ActorEffect, ActorRefOf}
 import com.evolutiongaming.catshelper.{FromFuture, LogOf, ToFuture}
 import org.apache.pekko.actor.Props
 

@@ -3,7 +3,7 @@ package com.evolution.pekko.effect.persistence
 import cats.effect.implicits.effectResourceOps
 import cats.effect.{Async, Concurrent, Ref, Resource}
 import cats.syntax.all.*
-import com.evolution.pekko.effect.*
+import com.evolution.pekko.effect.actor.*
 import com.evolution.pekko.effect.persistence.{Events, SeqNr}
 import com.evolutiongaming.catshelper.{Log, LogOf, ToFuture}
 import org.apache.pekko.actor.Actor

@@ -3,7 +3,7 @@ package com.evolution.pekko.effect.persistence
 import cats.effect.Resource
 import cats.syntax.all.*
 import cats.{Functor, Monad}
-import com.evolution.pekko.effect.{ActorCtx, Envelope, Receive}
+import com.evolution.pekko.effect.actor.{ActorCtx, Envelope, Receive}
 
 /**
  * This is the very first thing which is called within an actor in order to setup all machinery

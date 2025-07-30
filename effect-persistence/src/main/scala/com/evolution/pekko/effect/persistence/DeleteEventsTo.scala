@@ -3,7 +3,7 @@ package com.evolution.pekko.effect.persistence
 import cats.effect.{Resource, Sync}
 import cats.syntax.all.*
 import cats.{Applicative, FlatMap, ~>}
-import com.evolution.pekko.effect.Fail
+import com.evolution.pekko.effect.actor.Fail
 import com.evolution.pekko.effect.persistence.SeqNr
 import com.evolutiongaming.catshelper.{FromFuture, Log, MeasureDuration, MonadThrowable}
 import org.apache.pekko.persistence.DeleteEventsToInterop
