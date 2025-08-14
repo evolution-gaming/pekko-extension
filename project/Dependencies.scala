@@ -41,7 +41,7 @@ object Dependencies {
     val Core = "org.apache.pekko" %% "pekko-http-core" % version
     val Testkit = "org.apache.pekko" %% "pekko-http-testkit" % version
 
-    val OlderTestkit = "org.apache.pekko" %% "pekko-http-testkit" % "1.1.0"
+    val OlderTestkit = "org.apache.pekko" %% "pekko-http-testkit" % "1.2.0"
   }
 
   object Cats {
