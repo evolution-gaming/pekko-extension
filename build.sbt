@@ -44,6 +44,19 @@ val commonSettings = Seq(
   autoAPIMappings := true,
   versionScheme := Some("early-semver"),
   versionPolicyIntention := Compatibility.BinaryCompatible,
+
+  // TODO: remove after 1.1.0 release
+  versionPolicyIgnored ++= Seq(
+    // For 1.0.0, conhub module erroneously depended on the Akka version of sequentially.
+    // For 1.1.0, it was replaced with a Pekko version which generated "missing dependency" bincompat check failures.
+    // Since the clients had to exclude those accidental Akka dependencies anyway, this shouldn't affect real
+    // compatibility.
+    "com.typesafe.akka" %% "akka-actor",
+    "com.typesafe.akka" %% "akka-protobuf-v3",
+    "com.typesafe.akka" %% "akka-stream",
+    "com.evolutiongaming" %% "sequentially",
+    "org.scala-lang.modules" %% "scala-java8-compat",
+  ),
 )
 
 val alias =
@@ -112,6 +125,7 @@ lazy val pubsub = module("pubsub")
       Evo.CatsHelper,
       Evo.SCache,
       Scodec.Bits,
+      Evo.SMetrics,
       TestLib.ScalaTest % Test,
     ),
   )
@@ -129,6 +143,7 @@ lazy val testActor = module("test-actor")
     libraryDependencies ++= Seq(
       Pekko.Actor,
       TestLib.ScalaTest,
+      // needed for testing Pekko modules version mismatch logic
       Pekko.OlderSlf4j % Test,
     ),
   )
@@ -141,6 +156,7 @@ lazy val testHttp = module("test-http")
       Pekko.Stream,
       PekkoHttp.Core,
       TestLib.ScalaTest,
+      // needed for testing Pekko-Http modules version mismatch logic
       PekkoHttp.OlderTestkit % Test,
     ),
   )
@@ -282,7 +298,7 @@ lazy val conhub = module("conhub")
       Pekko.Protobuf,
       Evo.ConfigTools,
       Evo.FutureHelper,
-      Evo.Sequentially,
+      Evo.SequentiallyPekko,
       Misc.Logging,
       Cats.Core,
       Cats.Effect % Test,

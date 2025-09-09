@@ -11,7 +11,7 @@ object Dependencies {
     val ScalaTools = "com.evolutiongaming" %% "scala-tools" % "3.0.6"
     val ConfigTools = "com.evolutiongaming" %% "config-tools" % "1.0.5"
     val FutureHelper = "com.evolutiongaming" %% "future-helper" % "1.0.7"
-    val Sequentially = "com.evolutiongaming" %% "sequentially" % "2.0.6"
+    val SequentiallyPekko = "com.evolutiongaming" %% "sequentially-pekko" % "3.0.0"
     val SStream = "com.evolutiongaming" %% "sstream" % "1.1.0"
     val Retry = "com.evolutiongaming" %% "retry" % "3.1.0"
   }
@@ -33,7 +33,8 @@ object Dependencies {
     val Remote = "org.apache.pekko" %% "pekko-remote" % version
     val Protobuf = "org.apache.pekko" %% "pekko-protobuf-v3" % version
 
-    val OlderSlf4j = "org.apache.pekko" %% "pekko-slf4j" % "1.0.3"
+    // needed for testing Pekko modules version mismatch logic
+    val OlderSlf4j = "org.apache.pekko" %% "pekko-slf4j" % "1.1.5" // scala-steward:off
   }
 
   object PekkoHttp {
@@ -41,7 +42,8 @@ object Dependencies {
     val Core = "org.apache.pekko" %% "pekko-http-core" % version
     val Testkit = "org.apache.pekko" %% "pekko-http-testkit" % version
 
-    val OlderTestkit = "org.apache.pekko" %% "pekko-http-testkit" % "1.1.0" // scala-steward:off we need older version for tests
+    // needed for testing Pekko-Http modules version mismatch logic
+    val OlderTestkit = "org.apache.pekko" %% "pekko-http-testkit" % "1.1.0" // scala-steward:off
   }
 
   object Cats {
@@ -66,11 +68,11 @@ object Dependencies {
   }
 
   object Pureconfig {
-    private val version = "0.17.8"
-    val Pureconfig = "com.github.pureconfig" %% "pureconfig" % "0.17.8"
+    private val version = "0.17.9"
+    val Pureconfig = "com.github.pureconfig" %% "pureconfig" % version
     object Scala3 {
-      val Core = "com.github.pureconfig" %% "pureconfig-core" % "0.17.8"
-      val Generic = "com.github.pureconfig" %% "pureconfig-generic-scala3" % "0.17.8"
+      val Core = "com.github.pureconfig" %% "pureconfig-core" % version
+      val Generic = "com.github.pureconfig" %% "pureconfig-generic-scala3" % version
     }
   }
 
