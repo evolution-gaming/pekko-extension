@@ -38,7 +38,7 @@ object Dependencies {
   }
 
   object PekkoHttp {
-    private val version = "1.2.0"
+    private val version = "1.3.0"
     val Core = "org.apache.pekko" %% "pekko-http-core" % version
     val Testkit = "org.apache.pekko" %% "pekko-http-testkit" % version
 
