@@ -11,7 +11,7 @@ object Dependencies {
     val ScalaTools = "com.evolutiongaming" %% "scala-tools" % "3.0.6"
     val ConfigTools = "com.evolutiongaming" %% "config-tools" % "1.0.5"
     val FutureHelper = "com.evolutiongaming" %% "future-helper" % "1.0.7"
-    val SequentiallyPekko = "com.evolutiongaming" %% "sequentially-pekko" % "3.0.0"
+    val SequentiallyPekko = "com.evolutiongaming" %% "sequentially-pekko" % "3.1.0"
     val SStream = "com.evolutiongaming" %% "sstream" % "1.1.0"
     val Retry = "com.evolutiongaming" %% "retry" % "3.1.0"
   }
