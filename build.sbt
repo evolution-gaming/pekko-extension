@@ -44,6 +44,12 @@ val commonSettings = Seq(
   autoAPIMappings := true,
   versionScheme := Some("early-semver"),
   versionPolicyIntention := Compatibility.BinaryCompatible,
+  // TODO: remove after 1.3.0 release
+  versionPolicyIgnored ++= Seq(
+    // ssl-config-core 0.6.1 and 0.7.1 ARE binary compatible, ignoring, just as Pekko does for 1.3.0 release
+    // com.typesafe:ssl-config-core_2.13: incompatible version change from 0.6.1 to 0.7.1 (compatibility: package versioning policy)
+    "com.typesafe" %% "ssl-config-core",
+  ),
 )
 
 val alias =
