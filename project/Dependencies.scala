@@ -7,7 +7,7 @@ object Dependencies {
     val CatsHelper = "com.evolutiongaming" %% "cats-helper" % "3.12.2"
     val SCache = "com.evolution" %% "scache" % "5.1.4"
     val ExecutorTools = "com.evolutiongaming" %% "executor-tools" % "1.0.5"
-    val SMetrics = "com.evolutiongaming" %% "smetrics" % "2.3.5"
+    val SMetrics = "com.evolutiongaming" %% "smetrics" % "2.4.0"
     val ScalaTools = "com.evolutiongaming" %% "scala-tools" % "3.0.6"
     val ConfigTools = "com.evolutiongaming" %% "config-tools" % "1.0.5"
     val FutureHelper = "com.evolutiongaming" %% "future-helper" % "1.0.7"
