@@ -17,7 +17,7 @@ object Dependencies {
   }
 
   object Pekko {
-    private val version = "1.3.0"
+    private val version = "1.4.0"
     val Actor = "org.apache.pekko" %% "pekko-actor" % version
     val Cluster = "org.apache.pekko" %% "pekko-cluster" % version
     val ClusterTyped = "org.apache.pekko" %% "pekko-cluster-typed" % version
@@ -38,7 +38,7 @@ object Dependencies {
   }
 
   object PekkoHttp {
-    private val version = "1.3.0"
+    private val version = "1.4.0"
     val Core = "org.apache.pekko" %% "pekko-http-core" % version
     val Testkit = "org.apache.pekko" %% "pekko-http-testkit" % version
 
