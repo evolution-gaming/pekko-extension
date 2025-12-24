@@ -52,27 +52,30 @@ object MappedStrategy {
       def allocate(requester: Region, shard: Shard, current: Allocation) = {
         for {
           address <- mapping get shard
-        } yield for {
-          address <- address
-          region <- regionByAddress(address, current)
-        } yield {
-          region
-        }
+        } yield
+          for {
+            address <- address
+            region <- regionByAddress(address, current)
+          } yield {
+            region
+          }
       }
 
       def rebalance(current: Allocation, inProgress: Set[Shard]) = {
         val shards = for {
           (region, shards) <- current
           shard <- shards
-        } yield for {
-          address <- mapping get shard
-        } yield for {
+        } yield
+          for {
+            address <- mapping get shard
+          } yield
+            for {
 //          address <- address if addressOf(region) != address && regionByAddress(address, current).isDefined
-          address <- address
-          _ = address if addressOf(region) != address && regionByAddress(address, current).isDefined
-        } yield {
-          shard
-        }
+              address <- address
+              _ = address if addressOf(region) != address && regionByAddress(address, current).isDefined
+            } yield {
+              shard
+            }
 
         for {
           shards <- Parallel.parSequence(shards.toList)

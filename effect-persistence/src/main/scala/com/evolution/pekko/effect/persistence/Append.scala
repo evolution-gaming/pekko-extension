@@ -146,11 +146,12 @@ object Append {
       for {
         d <- MeasureDuration[F].start
         r <- self(events)
-      } yield for {
-        r <- r
-        d <- d
-        _ <- log.debug(s"append ${ events.size } events in ${ d.toMillis }ms")
-      } yield r
+      } yield
+        for {
+          r <- r
+          d <- d
+          _ <- log.debug(s"append ${ events.size } events in ${ d.toMillis }ms")
+        } yield r
 
     def withFail(
       fail: Fail[F],
