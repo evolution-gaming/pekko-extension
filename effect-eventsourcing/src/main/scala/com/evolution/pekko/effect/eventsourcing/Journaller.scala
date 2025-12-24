@@ -42,10 +42,11 @@ object Journaller {
       for {
         d <- MeasureDuration[F].start
         r <- self.deleteTo(seqNr)
-      } yield for {
-        r <- r
-        d <- d
-        _ <- log.info(s"delete events to $seqNr in ${ d.toMillis }ms")
-      } yield r
+      } yield
+        for {
+          r <- r
+          d <- d
+          _ <- log.info(s"delete events to $seqNr in ${ d.toMillis }ms")
+        } yield r
   }
 }

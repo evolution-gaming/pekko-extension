@@ -322,13 +322,14 @@ object ShardingStrategy {
             shards <- strategy.rebalance(current, inProgress)
             now <- Clock[F].millis
             allocationTime <- allocationTime.get
-          } yield for {
-            shard <- shards
-            timestamp = allocationTime get shard
-            if timestamp.forall { _ + cooldown.toMillis <= now }
-          } yield {
-            shard
-          }
+          } yield
+            for {
+              shard <- shards
+              timestamp = allocationTime get shard
+              if timestamp.forall { _ + cooldown.toMillis <= now }
+            } yield {
+              shard
+            }
         }
       }
     }

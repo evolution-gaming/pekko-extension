@@ -157,14 +157,15 @@ object AdaptiveStrategy {
           (region, shards) <- current
           address = addressOf(region)
           shard <- shards
-        } yield for {
-          address <- rebalance(shard, address)
-          shard <- address.fold(none[Shard].pure[F]) { address =>
-            toRebalance.update(_.updated(shard, address)).as(shard.some)
+        } yield
+          for {
+            address <- rebalance(shard, address)
+            shard <- address.fold(none[Shard].pure[F]) { address =>
+              toRebalance.update(_.updated(shard, address)).as(shard.some)
+            }
+          } yield {
+            shard
           }
-        } yield {
-          shard
-        }
 
         for {
           result <- Parallel.parSequence(result.toList)
