@@ -64,8 +64,9 @@ object ConHubSerializer {
 
   private val codecRemoved = (codecs.utf8_32 :: codecVersion).as[RemoteEvent.Event.Removed]
 
-  private val codecDisconnected =
-    (codecs.utf8_32 :: codecFiniteDuration :: codecVersion).as[RemoteEvent.Event.Disconnected]
+  private val codecDisconnected = (codecs.utf8_32 :: codecFiniteDuration :: codecVersion).as[
+    RemoteEvent.Event.Disconnected,
+  ]
 
   private val codecSync = codecsNel(codecValue).as[RemoteEvent.Event.Sync]
 

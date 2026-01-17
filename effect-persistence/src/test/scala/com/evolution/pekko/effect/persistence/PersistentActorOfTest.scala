@@ -1029,20 +1029,22 @@ class PersistentActorOfTest extends AsyncFunSuite with ActorSuite with Matchers 
 
     for {
       a <- actions
-      _ = a shouldEqual List(
-        Action.Created(EventSourcedId("8"), org.apache.pekko.persistence.Recovery(), PluginIds.Empty),
-        Action.Started,
-        Action.RecoveryAllocated(0L, none),
-      ) ++
+      _ = a shouldEqual
+        List(
+          Action.Created(EventSourcedId("8"), org.apache.pekko.persistence.Recovery(), PluginIds.Empty),
+          Action.Started,
+          Action.RecoveryAllocated(0L, none),
+        ) ++
         appends.toList ++
         List(Action.ReceiveAllocated(0), Action.ReceiveReleased, Action.RecoveryReleased, Action.Released)
       a <- actions
-      _ = a shouldEqual List(
-        Action.Created(EventSourcedId("8"), org.apache.pekko.persistence.Recovery(), PluginIds.Empty),
-        Action.Started,
-        Action.RecoveryAllocated(0L, none),
-        Action.ReplayAllocated,
-      ) ++
+      _ = a shouldEqual
+        List(
+          Action.Created(EventSourcedId("8"), org.apache.pekko.persistence.Recovery(), PluginIds.Empty),
+          Action.Started,
+          Action.RecoveryAllocated(0L, none),
+          Action.ReplayAllocated,
+        ) ++
         replayed.toList ++
         List(
           Action.ReplayReleased,

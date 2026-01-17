@@ -1058,22 +1058,24 @@ class EventSourcedActorOfTest extends AsyncFunSuite with ActorSuite with Matcher
 
     for {
       a <- actions
-      _ = a shouldEqual List(
-        Action.Created(EventSourcedId("8"), org.apache.pekko.persistence.Recovery(), PluginIds.Empty),
-        Action.Started,
-        Action.RecoveryAllocated(0L, none),
-        Action.ReplayAllocated,
-        Action.ReplayReleased,
-      ) ++
+      _ = a shouldEqual
+        List(
+          Action.Created(EventSourcedId("8"), org.apache.pekko.persistence.Recovery(), PluginIds.Empty),
+          Action.Started,
+          Action.RecoveryAllocated(0L, none),
+          Action.ReplayAllocated,
+          Action.ReplayReleased,
+        ) ++
         appends.toList ++
         List(Action.ReceiveAllocated(0), Action.ReceiveReleased, Action.RecoveryReleased, Action.Released)
       a <- actions
-      _ = a shouldEqual List(
-        Action.Created(EventSourcedId("8"), org.apache.pekko.persistence.Recovery(), PluginIds.Empty),
-        Action.Started,
-        Action.RecoveryAllocated(0L, none),
-        Action.ReplayAllocated,
-      ) ++
+      _ = a shouldEqual
+        List(
+          Action.Created(EventSourcedId("8"), org.apache.pekko.persistence.Recovery(), PluginIds.Empty),
+          Action.Started,
+          Action.RecoveryAllocated(0L, none),
+          Action.ReplayAllocated,
+        ) ++
         replayed.toList ++
         List(
           Action.ReplayReleased,
