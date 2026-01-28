@@ -6,7 +6,17 @@ import cats.effect.unsafe.implicits.global
 import cats.syntax.all.*
 import com.evolution.pekko.effect.actor.IOSuite.*
 import com.evolution.pekko.effect.actor.{
-  Act, ActorCtx, ActorEffect, ActorOf, ActorRefOf, Ask, Call, Envelope, Receive, ReceiveOf, Tell,
+  Act,
+  ActorCtx,
+  ActorEffect,
+  ActorOf,
+  ActorRefOf,
+  Ask,
+  Call,
+  Envelope,
+  Receive,
+  ReceiveOf,
+  Tell,
 }
 import com.evolution.pekko.effect.testkit.Probe
 import com.evolutiongaming.catshelper.CatsHelper.*

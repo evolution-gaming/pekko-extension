@@ -5,7 +5,14 @@ import com.evolution.pekko.cluster.pubsub.{PubSub, PubSubMsg}
 import com.evolution.pekko.serialization.{SerializedMsg, SerializedMsgExt}
 import org.apache.pekko.Done
 import org.apache.pekko.actor.{
-  Actor, ActorLogging, ActorRef, ActorSystem, DeadLetter, Deploy, ExtendedActorSystem, Props,
+  Actor,
+  ActorLogging,
+  ActorRef,
+  ActorSystem,
+  DeadLetter,
+  Deploy,
+  ExtendedActorSystem,
+  Props,
 }
 import org.apache.pekko.cluster.Cluster
 import org.apache.pekko.cluster.pubsub.DistributedPubSubMediator.Internal.Topic
