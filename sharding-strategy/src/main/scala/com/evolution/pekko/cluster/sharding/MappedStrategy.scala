@@ -7,7 +7,13 @@ import cats.{FlatMap, Parallel, ~>}
 import com.evolution.pekko.cluster.ddata.SafeReplicator
 import com.evolutiongaming.catshelper.{FromFuture, ToFuture}
 import org.apache.pekko.actor.{
-  ActorRef, ActorRefFactory, ActorSystem, Address, ExtendedActorSystem, Extension, ExtensionId,
+  ActorRef,
+  ActorRefFactory,
+  ActorSystem,
+  Address,
+  ExtendedActorSystem,
+  Extension,
+  ExtensionId,
 }
 import org.apache.pekko.cluster.ddata.*
 import org.apache.pekko.cluster.ddata.Replicator.{ReadConsistency, ReadLocal, WriteConsistency, WriteLocal}

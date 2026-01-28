@@ -10,8 +10,22 @@ import com.evolutiongaming.smetrics.MetricsHelper.*
 import org.apache.pekko.actor.{Actor, ActorLogging, ActorRef, ActorRefFactory, ActorSystem, Props}
 import org.apache.pekko.cluster.ddata.Replicator.{ReadConsistency, WriteConsistency}
 import org.apache.pekko.cluster.ddata.{
-  DistributedData, Flag, GCounter, GSet, Key, LWWMap, ManyVersionVector, ORMap, ORMultiMap, ORSet, OneVersionVector,
-  PNCounter, PNCounterMap, ReplicatedData, Replicator as R, VersionVector,
+  DistributedData,
+  Flag,
+  GCounter,
+  GSet,
+  Key,
+  LWWMap,
+  ManyVersionVector,
+  ORMap,
+  ORMultiMap,
+  ORSet,
+  OneVersionVector,
+  PNCounter,
+  PNCounterMap,
+  ReplicatedData,
+  Replicator as R,
+  VersionVector,
 }
 import org.apache.pekko.pattern.ask
 import org.apache.pekko.util.Timeout
