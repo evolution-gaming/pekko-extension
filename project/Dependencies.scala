@@ -95,6 +95,6 @@ object Dependencies {
   }
 
   object TestLib {
-    val ScalaTest = "org.scalatest" %% "scalatest" % "3.2.19"
+    val ScalaTest = "org.scalatest" %% "scalatest" % "3.2.20"
   }
 }
