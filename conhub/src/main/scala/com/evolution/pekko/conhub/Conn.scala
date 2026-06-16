@@ -23,7 +23,10 @@ object Conn {
   object Connected {
 
     def unapply[A, M](x: Conn[A, M]): Option[Connected[A, M]] = PartialFunction.condOpt(x) {
-      case x: Connected[A, M] => x
+      // `@unchecked` for Scala 3:
+      //   [error]    |the type test for com.evolution.pekko.conhub.Conn.Connected[A, M] cannot be checked at runtime
+      //   because its type arguments can't be determined from com.evolution.pekko.conhub.Conn[A, M]
+      case x: Connected[A, M] @unchecked => x
     }
   }
 
