@@ -3,8 +3,8 @@ import Dependencies.*
 val commonSettings = Seq(
   organization := "com.evolution",
   organizationName := "Evolution",
-  organizationHomepage := Some(url("https://evolution.com")),
-  homepage := Some(url("https://github.com/evolution-gaming/pekko-extension")),
+  organizationHomepage := Some(uri("https://evolution.com")),
+  homepage := Some(uri("https://github.com/evolution-gaming/pekko-extension")),
   startYear := Some(2016),
   crossScalaVersions := Seq("2.13.18", "3.3.8"),
   scalaVersion := crossScalaVersions.value.head,
@@ -35,8 +35,22 @@ val commonSettings = Seq(
   ),
   Compile / doc / scalacOptions ++= Seq("-groups", "-no-link-warnings"),
   Compile / doc / scalacOptions -= "-Xfatal-warnings",
+  // -Wnonunit-statement (added in sbt-scalac-opts-plugin 0.1.0) flags ScalaTest's
+  // `x shouldEqual y` used as a non-final statement; too noisy to fix across all code right now.
+  scalacOptions -= "-Wnonunit-statement",
+  // Under sbt 2 the compile cache can skip re-creating scoverage's data directory after `clean`.
+  // When a module's instrumented code runs inside another module's forked test JVM (before that
+  // module's own tests, if any, have run), scoverage.Invoker then crashes writing measurements to
+  // the missing directory. Ensure it always exists after compile whenever coverage is enabled.
+  Compile / compile := Def.uncached {
+    val compiled = (Compile / compile).value
+    if (coverageEnabled.value) {
+      val _ = (crossTarget.value / "scoverage-data").mkdirs()
+    }
+    compiled
+  },
   publishTo := Some(Resolver.evolutionReleases),
-  licenses := Seq(("MIT", url("https://opensource.org/licenses/MIT"))),
+  licenses := Seq(("MIT", uri("https://opensource.org/licenses/MIT"))),
   libraryDependencySchemes ++= Seq(
     "org.scala-lang.modules" %% "scala-java8-compat" % "always",
     "org.scala-lang.modules" %% "scala-xml" % "always",
@@ -47,10 +61,10 @@ val commonSettings = Seq(
 )
 
 val alias =
-  addCommandAlias("build", "+all compile test") ++
-    addCommandAlias("fmt", "+all scalafmtAll scalafmtSbt") ++
+  addCommandAlias("build", "+all compile testFull") ++
+    addCommandAlias("fmt", "+all scalafmtRepo") ++
     // `check` is called with `+` in release workflow
-    addCommandAlias("check", "all versionPolicyCheck Compile/doc scalafmtCheckAll scalafmtSbtCheck")
+    addCommandAlias("check", "all versionPolicyCheck Compile/doc scalafmtCheckRepo")
 
 val root = project
   .in(file("."))
@@ -322,7 +336,7 @@ lazy val effectActor = module("effect-actor")
   .settings(
     libraryDependencies ++= crossSettings(
       scalaVersion = scalaVersion.value,
-      if2 = Seq(compilerPlugin(Misc.KindProjector cross CrossVersion.full)),
+      if2 = Seq(compilerPlugin(Misc.KindProjector.cross(CrossVersion.full))),
       if3 = Nil,
     ),
   )
@@ -344,7 +358,7 @@ lazy val effectTestkit = module("effect-testkit")
   .settings(
     libraryDependencies ++= crossSettings(
       scalaVersion = scalaVersion.value,
-      if2 = Seq(compilerPlugin(Misc.KindProjector cross CrossVersion.full)),
+      if2 = Seq(compilerPlugin(Misc.KindProjector.cross(CrossVersion.full))),
       if3 = Nil,
     ),
   )
@@ -363,7 +377,7 @@ lazy val effectActorTests = module("effect-actor-tests")
   .settings(
     libraryDependencies ++= crossSettings(
       scalaVersion = scalaVersion.value,
-      if2 = Seq(compilerPlugin(Misc.KindProjector cross CrossVersion.full)),
+      if2 = Seq(compilerPlugin(Misc.KindProjector.cross(CrossVersion.full))),
       if3 = Nil,
     ),
   )
@@ -427,7 +441,7 @@ lazy val effectPersistence = module("effect-persistence")
   .settings(
     libraryDependencies ++= crossSettings(
       scalaVersion = scalaVersion.value,
-      if2 = Seq(compilerPlugin(Misc.KindProjector cross CrossVersion.full)),
+      if2 = Seq(compilerPlugin(Misc.KindProjector.cross(CrossVersion.full))),
       if3 = Nil,
     ),
   )
@@ -467,7 +481,7 @@ lazy val effectClusterSharding = module("effect-cluster-sharding")
   .settings(
     libraryDependencies ++= crossSettings(
       scalaVersion = scalaVersion.value,
-      if2 = Seq(compilerPlugin(Misc.KindProjector cross CrossVersion.full)),
+      if2 = Seq(compilerPlugin(Misc.KindProjector.cross(CrossVersion.full))),
       if3 = Nil,
     ),
   )
@@ -488,7 +502,7 @@ lazy val effectEventsourcing = module("effect-eventsourcing")
   .settings(
     libraryDependencies ++= crossSettings(
       scalaVersion = scalaVersion.value,
-      if2 = Seq(compilerPlugin(Misc.KindProjector cross CrossVersion.full)),
+      if2 = Seq(compilerPlugin(Misc.KindProjector.cross(CrossVersion.full))),
       if3 = Nil,
     ),
   )
