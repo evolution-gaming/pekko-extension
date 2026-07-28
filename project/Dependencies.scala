@@ -17,7 +17,7 @@ object Dependencies {
   }
 
   object Pekko {
-    private val version = "1.6.1"
+    private val version = "1.6.0"
     val Actor = "org.apache.pekko" %% "pekko-actor" % version
     val Cluster = "org.apache.pekko" %% "pekko-cluster" % version
     val ClusterTyped = "org.apache.pekko" %% "pekko-cluster-typed" % version
