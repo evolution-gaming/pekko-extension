@@ -55,6 +55,10 @@ val commonSettings = Seq(
   autoAPIMappings := true,
   versionScheme := Some("early-semver"),
   versionPolicyIntention := Compatibility.BinaryCompatible,
+  versionPolicyIgnored ++= Seq(
+    // add libraries here that are known to be binary compatible, like:
+    "com.evolutiongaming" %% "smetrics",
+  ),
 )
 
 val alias =
