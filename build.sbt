@@ -57,7 +57,7 @@ val commonSettings = Seq(
   versionPolicyIntention := Compatibility.BinaryCompatible,
   versionPolicyIgnored ++= Seq(
     // add libraries here that are known to be binary compatible, like:
-    "com.evolutiongaming" %% "smetrics",
+//    "com.evolutiongaming" %% "smetrics",
   ),
 )
 
