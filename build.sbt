@@ -6,7 +6,7 @@ val commonSettings = Seq(
   organizationHomepage := Some(uri("https://evolution.com")),
   homepage := Some(uri("https://github.com/evolution-gaming/pekko-extension")),
   startYear := Some(2016),
-  crossScalaVersions := Seq("2.13.18", "3.3.8"),
+  crossScalaVersions := Seq("2.13.18", "3.9.0"),
   scalaVersion := crossScalaVersions.value.head,
   scalacOptions ++= Seq(
     "-release:17",
