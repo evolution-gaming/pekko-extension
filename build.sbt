@@ -124,6 +124,7 @@ lazy val pubsub = module("pubsub")
       Cats.Core,
       Cats.Effect,
       Evo.MetricTools,
+      Dropwizard.MetricsGraphite,
       Evo.CatsHelper,
       Evo.SCache,
       Scodec.Bits,

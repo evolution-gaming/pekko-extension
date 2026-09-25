@@ -82,6 +82,10 @@ object Dependencies {
     val simpleclient = "io.prometheus" % "simpleclient" % version
   }
 
+  object Dropwizard {
+    val MetricsGraphite = "io.dropwizard.metrics" % "metrics-graphite" % "4.2.40"
+  }
+
   object Logback {
     private val version = "1.6.3"
     val Core = "ch.qos.logback" % "logback-core" % version
