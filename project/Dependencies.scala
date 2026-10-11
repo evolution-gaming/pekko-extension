@@ -86,6 +86,10 @@ object Dependencies {
     val MetricsGraphite = "io.dropwizard.metrics" % "metrics-graphite" % "4.2.40"
   }
 
+  object RabbitMq {
+    val AmqpClient = "com.rabbitmq" % "amqp-client" % "5.37.0"
+  }
+
   object Logback {
     private val version = "1.6.5"
     val Core = "ch.qos.logback" % "logback-core" % version
