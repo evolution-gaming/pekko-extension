@@ -286,6 +286,9 @@ lazy val toolsInstrumentation = module("tools-instrumentation")
       Pekko.Actor,
       Evo.ConfigTools,
       Prometheus.simpleclient,
+      // optional so that consumers still on the 0.x simpleclient do not get the 1.x client on their classpath
+      PrometheusV1.MetricsCore % Optional,
+      TestLib.ScalaTest % Test,
     ),
   )
 

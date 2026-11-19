@@ -176,7 +176,18 @@ TODO add description!
 
 #### pekko-extension-tools-instrumentation
 
-TODO add description!
+Dispatchers that report queue and run latency (`dispatcher_latency`) and the number of busy workers
+(`dispatcher_workers`) to Prometheus. Pick the metrics for the Prometheus client you use:
+
+```scala
+// Prometheus simpleclient 0.x
+Instrumented.Metrics.Of(collectorRegistry)
+
+// Prometheus client 1.x: add "io.prometheus" % "prometheus-metrics-core" to your dependencies first
+PrometheusV1MetricsOf(prometheusRegistry)
+```
+
+Both expose the same metric names, labels and quantiles.
 
 TODO do we need umbrella lib `pekko-extension-tools`?
 
