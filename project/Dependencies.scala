@@ -87,7 +87,7 @@ object Dependencies {
   }
 
   object RabbitMq {
-    val AmqpClient = "com.rabbitmq" % "amqp-client" % "5.37.1"
+    val AmqpClient = "com.rabbitmq" % "amqp-client" % "5.38.0"
   }
 
   object Logback {
