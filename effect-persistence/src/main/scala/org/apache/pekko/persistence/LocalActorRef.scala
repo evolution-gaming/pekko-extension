@@ -74,7 +74,8 @@ private[persistence] object LocalActorRef {
    * @param initial
    *   The initial state of type [[S]].
    * @param timeout
-   *   [[TimeoutException]] will be thrown if no incoming messages received within the timeout.
+   *   Maximum idle interval. Starting a handled reply renews it, the handler must finish within the
+   *   renewed interval, even when no client is waiting.
    * @param receive
    *   The aggregate function defining how to apply incoming message on state or produce final
    *   result: [[Left]] for continue aggregating while [[Right]] for the result.
@@ -95,52 +96,57 @@ private[persistence] object LocalActorRef {
 
     val F = Temporal[F]
 
-    type Updated = FiniteDuration
+    type Result = Either[Throwable, R]
 
-    case class State(state: S, updated: Updated)
+    sealed trait Status
+    case class Pending(updated: FiniteDuration) extends Status {
+      def isExpired(now: FiniteDuration): Boolean = now - updated >= timeout
+    }
+    case class Completed(result: Result) extends Status
 
-    def timeoutException = new TimeoutException(s"no messages received during period of $timeout")
+    def expired = Completed(Left(new TimeoutException(s"no messages received during period of $timeout")))
 
     for {
       now <- F.monotonic
-      state <- SerialRef.of[F, State](State(initial, now))
-      defer <- F.deferred[Either[Throwable, R]]
-      fiber <- F.start {
-
-        type Delay = FiniteDuration
-
-        /*
-         * If state was not updated for more than [[#timeout]] - completes [[#defer]] with a failed
-         * result and exits tailRecM loop.
-         *
-         * Otherwise, calculate [[#delay]] till next timeout and continue loop.
-         *
-         * @param delay
-         *   time before next timeout
-         * @return
-         *   exit or continue loop
-         */
-        def failOnTimeout(delay: Delay): F[Either[Delay, Unit]] =
-          for {
-            _ <- F.sleep(delay)
-            state <- state.get
-            now <- F.monotonic
-            result <-
-              if (state.updated + timeout < now) defer.complete(timeoutException.asLeft) as ().asRight[Delay]
-              else (state.updated + timeout - now).asLeft[Unit].pure[F]
-          } yield result
-
-        timeout.tailRecM(failOnTimeout)
-      }
+      state <- SerialRef.of[F, S](initial)
+      status <- F.ref[Status](Pending(now))
+      result <- F.deferred[Result]
     } yield new LocalActorRef[F, R] {
 
-      private def done(e: Either[Throwable, R]) = {
-        val finish = for {
-          _ <- defer.complete(e)
-          _ <- fiber.cancel
-        } yield {}
-        finish.uncancelable
+      // Readers and the watchdog can observe a reply's deadline while receive holds the state permit.
+      private def update(now: FiniteDuration)(onTime: Pending => Status): F[Status] =
+        status.flatModify {
+          case pending: Pending =>
+            val next = if (pending.isExpired(now)) expired else onTime(pending)
+            val publish = next match {
+              case Completed(r) =>
+                result.complete(r).as(next)
+              case _ =>
+                next.pure[F]
+            }
+            (next, publish)
+          case done => (done, done.pure[F])
+        }
+
+      private def observe(current: Status, now: FiniteDuration): F[Status] = current match {
+        case p: Pending if p.isExpired(now) =>
+          update(now)(identity)
+        case _ =>
+          current.pure[F]
       }
+
+      private def finish(r: Result): F[Unit] =
+        F.monotonic.flatMap(now => update(now)(_ => Completed(r))).void
+
+      private def watchdog: F[Unit] =
+        F.monotonic.flatMap { now =>
+          status.get.flatMap(observe(_, now)).flatMap {
+            case Pending(updated) =>
+              F.sleep(timeout - (now - updated).max(Duration.Zero)) >> watchdog
+            case Completed(_) =>
+              F.unit
+          }
+        }
 
       override def ref: ActorRef = new MinimalActorRef {
 
@@ -155,33 +161,46 @@ private[persistence] object LocalActorRef {
         ): Unit =
           state
             .update { s =>
-              val p = s.state -> m
-              if (receive.isDefinedAt(p)) {
-
-                for {
-                  t <- Temporal[F].monotonic
-                  r <- receive(p)
-                  s <- r match {
-                    case Left(s) => State(s, t).pure[F]
-                    case Right(r) => done(r.asRight).as(s)
+              val p = s -> m
+              F.monotonic.flatMap { now =>
+                if (receive.isDefinedAt(p)) {
+                  update(now)(_ => Pending(now)) >> receive(p).flatMap {
+                    // The next reply or reader checks the deadline published at entry.
+                    case Left(next) =>
+                      next.pure[F]
+                    case Right(r) =>
+                      finish(r.asRight).as(s)
                   }
-                } yield s
-
-              } else {
-                s.pure[F]
+                } else s.pure[F]
+              }.handleErrorWith { error =>
+                finish(error.asLeft).as(s)
               }
-            }
-            .handleErrorWith { e =>
-              done(e.asLeft).void
             }
             .toTry
             .get
 
       }
 
-      override def res: F[R] = defer.get.flatMap(_.liftTo[F])
+      override def res: F[R] =
+        get.flatMap {
+          case Some(result) =>
+            result.liftTo[F]
+          case None =>
+            watchdog.background.surround(result.get).flatMap(_.liftTo[F])
+        }
 
-      override def get: F[Option[Either[Throwable, R]]] = defer.tryGet
+      override def get: F[Option[Either[Throwable, R]]] =
+        status.get.flatMap {
+          case Completed(r) =>
+            r.some.pure[F]
+          case p: Pending =>
+            F.monotonic.flatMap(observe(p, _)).map {
+              case Completed(r) =>
+                Some(r)
+              case Pending(_) =>
+                None
+            }
+        }
     }
   }
 
