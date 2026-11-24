@@ -82,6 +82,11 @@ object Dependencies {
     val simpleclient = "io.prometheus" % "simpleclient" % version
   }
 
+  object PrometheusV1 {
+    private val version = "1.10.0"
+    val MetricsCore = "io.prometheus" % "prometheus-metrics-core" % version
+  }
+
   object Dropwizard {
     val MetricsGraphite = "io.dropwizard.metrics" % "metrics-graphite" % "4.2.40"
   }
